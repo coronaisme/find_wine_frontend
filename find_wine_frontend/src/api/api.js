@@ -24,6 +24,10 @@ const getCurrentUser = () => {
   }).then(res => res.json())
 }
 
+export const getWines = () => {
+ return fetch(`${API}/api/v1/wines`).then(res => res.json()) 
+}
+
 export default {
   auth: {
     login: login,
