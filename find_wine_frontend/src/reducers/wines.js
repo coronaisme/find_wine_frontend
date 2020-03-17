@@ -12,7 +12,7 @@ export default function wines(state = initialState, action) {
     case SET_ALL_WINES:
       return {
         ...state,
-        wines:action.payload
+        wines:action.payload 
       }
     case SET_CURRENT_WINE:
       return {

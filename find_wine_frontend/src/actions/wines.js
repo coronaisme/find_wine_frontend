@@ -11,7 +11,7 @@ import { getWines } from '../api/api.js';
 //all wines
 export function setAllWines() {
   return function(dispatch) {
-      getWines().then(data => {
+      getWines().then(data => { 
         dispatch({
       type: SET_ALL_WINES, 
       payload: data.wines
@@ -27,5 +27,6 @@ export function setCurrentWine(wine) {
     type: SET_CURRENT_WINE,
     payload: wine
   })
+  console.log(wine, "at action")
 }
 }

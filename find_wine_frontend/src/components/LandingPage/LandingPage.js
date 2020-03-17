@@ -9,17 +9,19 @@ import SelectedWine from '../SelectedWine/SelectedWine';
 class LandingPage extends Component {
 
   componentDidMount() {
-    this.props.setWines()
+    this.props.setAllWines()
   }
 
   onWineClick = (wine) => {
     this.props.setCurrentWine(wine)
-    console.log(this.props.wines.currentWine)
-    
+ 
   }
 
+
+
   render() {
-    const { wines } = this.props.wines
+    const { wines } = this.props
+    console.log(this.props.currentWine, "in render")
     return (
       <div className="LandingPage">
         <br/>
@@ -28,6 +30,7 @@ class LandingPage extends Component {
         <br/>
         <Card.Group centered itemsPerRow={4}>
             {
+              
             wines.map(wine => <RenderWine key={wine.id} wine={wine} onWineClick={this.onWineClick} />)
             }
 
@@ -40,18 +43,19 @@ class LandingPage extends Component {
 //gives access to store
 const mapStateToProps = (state) => {
   return {
-    wines:state.wines
+    wines:state.wines,
+    currentWine:state.currentWine
   }
 }
 
-//give ability to update store with action
+// give ability to update store with action
 const mapDispatchToProps = (dispatch) => {
   return {
     setCurrentWine: (wine) => {
-      dispatch(setCurrentWine(wine))
+      return dispatch(setCurrentWine(wine))
     },
-    setWines: () => {
-      dispatch(setAllWines())
+    setAllWines: () => {
+      return dispatch(setAllWines())
     }
   }
 }
