@@ -14,27 +14,26 @@ class LandingPage extends Component {
 
   onWineClick = (wine) => {
     this.props.setCurrentWine(wine)
- 
   }
 
 
 
   render() {
-    const { wines } = this.props
-    console.log(this.props.currentWine, "in render")
+    const { wines, currentWine } = this.props
+    
     return (
       <div className="LandingPage">
         <br/>
-        <Header as='h2' color='blue' textAlign='center'>Something here like seasonal wines? idk, picture? </Header>   
         <br/>
         <br/>
+          { currentWine ? <SelectedWine  wine={currentWine} /> 
+              :
         <Card.Group centered itemsPerRow={4}>
             {
-              
             wines.map(wine => <RenderWine key={wine.id} wine={wine} onWineClick={this.onWineClick} />)
             }
-
         </Card.Group> 
+        }
       </div>
     )
   }

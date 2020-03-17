@@ -13,7 +13,7 @@ function App() {
       <Switch>
       <Route path="/home" render={routerProps => {
         return (<LandingPage {...routerProps} />)}}></Route>
-      
+      <Route path="/wines/"></Route>
       </Switch>
     </div>
   );

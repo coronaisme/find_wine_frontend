@@ -27,6 +27,5 @@ export function setCurrentWine(wine) {
     type: SET_CURRENT_WINE,
     payload: wine
   })
-  console.log(wine, "at action")
 }
 }
