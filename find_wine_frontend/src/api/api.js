@@ -13,7 +13,7 @@ const login = (username, password) => {
     method: "POST",
     headers:headers,
     body: JSON.stringify({
-      username, password
+    username, password
     })
   }).then(res => res.json())
 }

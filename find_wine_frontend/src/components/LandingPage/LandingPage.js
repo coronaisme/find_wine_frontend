@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { setAllWines, setCurrentWineId } from '../../actions/wines'
+import { setAllWines, setCurrentWine } from '../../actions/wines'
 import { Card, Header} from 'semantic-ui-react'
 import RenderWine from '../RenderWine/RenderWine';
+import SelectedWine from '../SelectedWine/SelectedWine';
 
 
 class LandingPage extends Component {
@@ -12,7 +13,9 @@ class LandingPage extends Component {
   }
 
   onWineClick = (wine) => {
-    this.props.setCurrentWineId(wine.id)
+    this.props.setCurrentWine(wine)
+    console.log(this.props.wines.currentWine)
+    
   }
 
   render() {
@@ -20,16 +23,14 @@ class LandingPage extends Component {
     return (
       <div className="LandingPage">
         <br/>
-        <Header as='h2' color='blue' textAlign='center'>Hello </Header>   
+        <Header as='h2' color='blue' textAlign='center'>Something here like seasonal wines? idk, picture? </Header>   
         <br/>
-        {/* <div className="segment" >
-        <Segment  circular style={{cursor:"pointer"}} >
-        <i className="icon large hand point up"  style={{cursor:"pointer"}}/> <br/>{(this.state.myprofile) ? "All Restaurants" : "My Profile"}
-        </Segment>
-        </div> */}
         <br/>
         <Card.Group centered itemsPerRow={4}>
-            {wines.map(wine => <RenderWine key={wine.id} wine={wine} onWineClick={this.onWineClick} />)}
+            {
+            wines.map(wine => <RenderWine key={wine.id} wine={wine} onWineClick={this.onWineClick} />)
+            }
+
         </Card.Group> 
       </div>
     )
@@ -46,8 +47,8 @@ const mapStateToProps = (state) => {
 //give ability to update store with action
 const mapDispatchToProps = (dispatch) => {
   return {
-    setCurrentWineId: (wine_id) => {
-      dispatch(setCurrentWineId(wine_id))
+    setCurrentWine: (wine) => {
+      dispatch(setCurrentWine(wine))
     },
     setWines: () => {
       dispatch(setAllWines())

@@ -1,18 +1,19 @@
 import React from 'react';
 import './App.css';
 import LandingPage from './components/LandingPage/LandingPage.js'
-import {Switch, Route, Redirect} from 'react-router-dom';
-import Navbar from './components/Navbar/Navbar.js';
+import {Switch, Route} from 'react-router-dom';
+import TopBar from './components/TopBar/TopBar.js';
 
 
 
 function App() {
   return (
     <div className="App">
-      <Navbar />
+      <TopBar />
       <Switch>
       <Route path="/home" render={routerProps => {
         return (<LandingPage {...routerProps} />)}}></Route>
+      
       </Switch>
     </div>
   );
