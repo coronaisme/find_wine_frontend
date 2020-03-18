@@ -35,7 +35,7 @@ export default class TopBar extends Component {
             </Nav>
           <Form inline>
             <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-            <Button variant="outline-success">Search</Button>
+            <Button variant="outline-dark">Search</Button>
           </Form>
             {/* get icons */}
             <Nav.Link href="#home">Profile</Nav.Link>

@@ -6,7 +6,6 @@ const initialState = {
   wines: [],
   currentWine : null,
   searchInput: ""
-
 }
 
 export default function wines(state = initialState, action) {

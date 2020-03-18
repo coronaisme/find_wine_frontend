@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { setAllWines, setCurrentWine } from '../../actions/wines'
+import { setAllWines, setCurrentWine, setSearchWine } from '../../actions/wines'
 import { Card } from 'semantic-ui-react'
 import RenderWine from '../RenderWine/RenderWine';
 import SelectedWine from '../SelectedWine/SelectedWine';
@@ -14,7 +14,9 @@ class LandingPage extends Component {
 
   onWineClick = (wine) => {
     this.props.setCurrentWine(wine)
+    this.props.history.push(`/wines/${wine.id}`)
   }
+
 
  
 
@@ -35,7 +37,7 @@ class LandingPage extends Component {
         <br/>
         <br/>
         <br/>
-          { currentWine ? <SelectedWine  wine={currentWine} /> 
+          { currentWine ? <SelectedWine wine={currentWine} /> 
               :
         <Card.Group centered itemsPerRow={4}>
             {
@@ -58,7 +60,8 @@ class LandingPage extends Component {
 const mapStateToProps = (state) => {
   return {
     wines:state.wines,
-    currentWine:state.currentWine
+    currentWine:state.currentWine,
+    searchInput:state.searchInput
   }
 }
 
@@ -70,6 +73,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     setAllWines: () => {
       return dispatch(setAllWines())
+    },
+    setSearchWine: (input) => {
+      return dispatch(setSearchWine(input))
     }
   }
 }
