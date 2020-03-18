@@ -1,3 +1,40 @@
 .row1 {
   align-items: stretch;
 }
+.wine_year {
+  text-align:left;
+}
+.wine_title {
+  text-align: left;
+  font-style: Montserrat Regular;
+}
+.wine_price {
+  text-align: left;
+}
+.wine_description {
+  text-align:left;
+}
+.wine_score {
+ text-align: left;
+}
+.add_to_cart_btn {
+  align-content: left;
+}
+.left_col {
+  align-content: left;
+}
+.btn_div {
+  text-align: left;
+}
+.reviews_row {
+  text-align: center;
+}
+.wine_review_title {
+  text-align:left;
+}
+.mb-2 {
+  text-align: left;
+}
+.review_text {
+  text-align: left;
+}
