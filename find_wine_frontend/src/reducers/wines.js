@@ -1,10 +1,12 @@
 //in charge of wine state
-import { SET_ALL_WINES, SET_CURRENT_WINE } from '../actions/types'
+import { SET_ALL_WINES, SET_CURRENT_WINE, SET_SEARCH_WINES } from '../actions/types'
 
 
 const initialState = {
   wines: [],
-  currentWine : null
+  currentWine : null,
+  searchInput: ""
+
 }
 
 export default function wines(state = initialState, action) {
@@ -18,6 +20,11 @@ export default function wines(state = initialState, action) {
       return {
         ...state,
         currentWine: action.payload
+      }
+    case SET_SEARCH_WINES: 
+      return {
+        ...state,
+        searchInput: action.payload
       }
     default: return state
   }

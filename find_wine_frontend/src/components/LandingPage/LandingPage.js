@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { setAllWines, setCurrentWine } from '../../actions/wines'
-import { Card, Header} from 'semantic-ui-react'
+import { Card } from 'semantic-ui-react'
 import RenderWine from '../RenderWine/RenderWine';
 import SelectedWine from '../SelectedWine/SelectedWine';
 
@@ -16,11 +16,20 @@ class LandingPage extends Component {
     this.props.setCurrentWine(wine)
   }
 
+ 
 
-
+  
+  
   render() {
     const { wines, currentWine } = this.props
-    
+    const varietal = this.props.location.pathname.split("/")[2]
+    const country = this.props.location.pathname.split("/")[3]
+   
+
+    const filteredWinesByVarietal = wines.filter(wine => wine.varietal === varietal)
+    const filteredWinesByCountry = wines.filter(wine => wine.country === country)
+    console.log(wines)
+ 
     return (
       <div className="LandingPage">
         <br/>
@@ -30,6 +39,12 @@ class LandingPage extends Component {
               :
         <Card.Group centered itemsPerRow={4}>
             {
+            country ?
+            filteredWinesByCountry.map(wine => <RenderWine key={wine.id} wine={wine} onWineClick={this.onWineClick} />)
+            :
+            varietal ? 
+            filteredWinesByVarietal.map(wine => <RenderWine key={wine.id} wine={wine} onWineClick={this.onWineClick} />)
+            :
             wines.map(wine => <RenderWine key={wine.id} wine={wine} onWineClick={this.onWineClick} />)
             }
         </Card.Group> 
