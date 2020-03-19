@@ -29,7 +29,7 @@ export default class App extends Component {
         this.setState({
           auth: currentUser
         })
-      }, () => console.log(this.state.auth.currentUser, "in App.js"))
+      })
     }
   }
 
