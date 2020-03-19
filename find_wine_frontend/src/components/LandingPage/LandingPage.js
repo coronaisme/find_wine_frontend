@@ -17,6 +17,8 @@ class LandingPage extends Component {
     this.props.history.push(`/wines/${wine.id}`)
   }
 
+  
+
   render() {
     const { wines, currentWine } = this.props
     const varietal = this.props.location.pathname.split("/")[2]

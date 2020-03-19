@@ -8,18 +8,18 @@ const headers = {
   Authorization: token
 };
 
-const login = (username, password) => {
-  return fetch(`${API}/auth/`, {
+const login = (name, password) => {
+  return fetch(`${API}/api/v1/auth`, {
     method: "POST",
     headers:headers,
     body: JSON.stringify({
-    username, password
+    name, password
     })
   }).then(res => res.json())
 }
 
 const getCurrentUser = () => {
-  return fetch(`${API}/current_user`, {
+  return fetch(`${API}/api/v1/users/current_user`, {
     headers:headers
   }).then(res => res.json())
 }

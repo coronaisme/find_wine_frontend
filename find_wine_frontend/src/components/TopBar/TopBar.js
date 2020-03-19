@@ -5,9 +5,12 @@ import './TopBar.css';
 
 export default class TopBar extends Component {
 
+
+
   
 
   render() {
+    console.log(this.props.current_user, "in top bar")
     return (
       <Navbar bg="light" expand="lg">
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -37,8 +40,9 @@ export default class TopBar extends Component {
             <FormControl type="text" placeholder="Search" className="mr-sm-2" />
             <Button variant="outline-dark">Search</Button>
           </Form>
-            {/* get icons */}
-            <Nav.Link className="profile" href="#home">Profile</Nav.Link>
+           {/* if logged in go to user profile, else send to login */}
+            <Nav.Link className="profile" href="/login">Profile</Nav.Link>
+
             <Nav.Link className="cart" href="#link">Cart</Nav.Link>
         </Navbar.Collapse>
       </Navbar>
