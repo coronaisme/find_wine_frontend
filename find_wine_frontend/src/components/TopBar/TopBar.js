@@ -38,8 +38,8 @@ export default class TopBar extends Component {
             <Button variant="outline-dark">Search</Button>
           </Form>
             {/* get icons */}
-            <Nav.Link href="#home">Profile</Nav.Link>
-            <Nav.Link href="#link">Cart</Nav.Link>
+            <Nav.Link className="profile" href="#home">Profile</Nav.Link>
+            <Nav.Link className="cart" href="#link">Cart</Nav.Link>
         </Navbar.Collapse>
       </Navbar>
     )
