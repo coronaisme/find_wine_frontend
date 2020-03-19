@@ -20,14 +20,14 @@ export default class TopBar extends Component {
               <NavDropdown.Item href="/wines/Chardonnay">Chardonnay</NavDropdown.Item>
               <NavDropdown.Item href="/wines/Sauvignon Blanc">Sauvignon Blanc</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">Other</NavDropdown.Item>
+              <NavDropdown.Item href="/wines/other">Other</NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title="Country" id="basic-nav-dropdown">
               <NavDropdown.Item href="/wines/country/France">France</NavDropdown.Item>
               <NavDropdown.Item href="/wines/country/Italy">Italy</NavDropdown.Item>
               <NavDropdown.Item href="/wines/country/USA">USA</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">Other</NavDropdown.Item>
+              <NavDropdown.Item href="/wines/country/other">Other</NavDropdown.Item>
             </NavDropdown>
           </Nav>
             <Nav className="title" >

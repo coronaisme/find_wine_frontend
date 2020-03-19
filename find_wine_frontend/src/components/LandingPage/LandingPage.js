@@ -17,11 +17,6 @@ class LandingPage extends Component {
     this.props.history.push(`/wines/${wine.id}`)
   }
 
-
- 
-
-  
-  
   render() {
     const { wines, currentWine } = this.props
     const varietal = this.props.location.pathname.split("/")[2]
@@ -29,8 +24,10 @@ class LandingPage extends Component {
    
 
     const filteredWinesByVarietal = wines.filter(wine => wine.varietal === varietal)
+    const filteredVarietalByOther = wines.filter(wine => wine.varietal !== "Zinfandel" && wine.varietal !== "Cabernet Sauvignon" && wine.varietal !== "Merlot" && wine.varietal !== "Chardonnay" && wine.varietal !== "Sauvignon Blanc")
     const filteredWinesByCountry = wines.filter(wine => wine.country === country)
-    console.log(wines)
+    const filteredCountryByOther = wines.filter(wine => wine.country !== "France" && wine.country !== "Italy" && wine.country !== "USA")
+  
  
     return (
       <div className="LandingPage">
@@ -41,11 +38,17 @@ class LandingPage extends Component {
               :
         <Card.Group centered itemsPerRow={4}>
             {
+            country === "other" ?
+            filteredCountryByOther.map(wine => <RenderWine key={wine.id} wine={wine} onWineClick={this.onWineClick} />)
+            :
             country ?
             filteredWinesByCountry.map(wine => <RenderWine key={wine.id} wine={wine} onWineClick={this.onWineClick} />)
             :
-            varietal ? 
+            varietal === "Zinfandel" || varietal === "Cabernet Sauvignon" || varietal === "Merlot" || varietal === "Chardonnay" || varietal === "Sauvignon Blanc" ? 
             filteredWinesByVarietal.map(wine => <RenderWine key={wine.id} wine={wine} onWineClick={this.onWineClick} />)
+            :
+            varietal === "other" ? 
+            filteredVarietalByOther.map(wine => <RenderWine key={wine.id} wine={wine} onWineClick={this.onWineClick} />)
             :
             wines.map(wine => <RenderWine key={wine.id} wine={wine} onWineClick={this.onWineClick} />)
             }
