@@ -5,13 +5,26 @@ import './TopBar.css';
 
 export default class TopBar extends Component {
 
+  componentDidUpdate() {
+    if (this.props.current_user) {
+      console.log(this.props.current_user, "componentDidUpdate")
+      
+    }
+  }
 
-
-  
+  checkCurrentUser = () => {
+   if (this.props.current_user.user_details) {
+     return  <Nav.Link className="profile" href="/users/1">Hey, {this.props.current_user.user_details.name}</Nav.Link>
+   }
+      else {
+      return <Nav.Link className="profile" href="/login">Login</Nav.Link>
+      }
+  }
 
   render() {
+   
     console.log(this.props.current_user, "in top bar")
-    const { current_user } = this.props
+    
     return (
       <Navbar bg="light" expand="lg">
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -41,11 +54,7 @@ export default class TopBar extends Component {
             <FormControl type="text" placeholder="Search" className="mr-sm-2" />
             <Button variant="outline-dark">Search</Button>
           </Form>
-           { current_user.user_details ?
-            <Nav.Link className="profile" href="/users/1">Hey, {current_user.user_details.name}</Nav.Link>
-            :
-            <Nav.Link className="profile" href="/login">Login</Nav.Link>
-           }
+           {this.checkCurrentUser()}
             <Nav.Link className="cart" href="#link">Cart</Nav.Link>
         </Navbar.Collapse>
       </Navbar>

@@ -32,6 +32,7 @@ class LandingPage extends Component {
   
  
     return (
+      
       <div className="LandingPage">
         <br/>
         <br/>

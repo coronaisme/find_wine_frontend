@@ -9,7 +9,6 @@ import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react'
 export default class Login extends Component {
   
   state = {
-    
     error: false,
     fields: {
       username: "",
@@ -19,16 +18,16 @@ export default class Login extends Component {
 
  
 
-  handleLogin = user => {
-    const currentUser = { currentUser: user }
-    localStorage.setItem('token', user.token)
-    this.setState({ auth: currentUser });
-  }
+  // handleLogin = user => {
+  //   const currentUser = { currentUser: user }
+  //   localStorage.setItem('token', user.token)
+  //   this.setState({ auth: currentUser });
+  // }
 
-  handleLogout = () => {
-    localStorage.removeItem('token');
-    this.setState({ auth: { currentUser: {} } });
-  };
+  // handleLogout = () => {
+  //   localStorage.removeItem('token');
+  //   this.setState({ auth: { currentUser: {} } });
+  // };
   
   handleChange = (e) => {
     const newFields = { ...this.state.fields, [e.target.name]: e.target.value}
@@ -48,8 +47,8 @@ export default class Login extends Component {
           error: true
         })
       } else {
-        this.handleLogin(res);
         this.props.history.push('/wines')
+        this.props.handleLogin(res);
       }
     })
 

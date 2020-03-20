@@ -5,6 +5,7 @@ import LandingPage from './components/LandingPage/LandingPage.js'
 import { Switch, Route } from 'react-router-dom';
 import TopBar from './components/TopBar/TopBar.js';
 import Login from './components/Login/Login.js'
+import UserPage from './components/UserPage/UserPage.js'
 import api from './api/api.js'
 
 
@@ -33,21 +34,33 @@ export default class App extends Component {
     }
   }
 
+ 
+  handleLogin = user => {
+    const currentUser = { currentUser: user }
+    localStorage.setItem('token', user.token)
+    this.setState({ auth: currentUser });
+    window.location.reload()
+  }
+
+  handleLogout = () => {
+    localStorage.removeItem('token');
+    this.setState({ auth: { currentUser: {} } });
+  };
+
 
 
   render(){
-    
+    console.log(this.state, "state in app")
     return (
       <div className="App">
         <TopBar current_user={this.state.auth.currentUser} />
         <Switch>
-        {/* <Route path="/wines/1" render={routerProps => {
-            return (<SelectedWine  {...routerProps} />)}}></Route> */}
           <Route exact path="/wines" render={routerProps => {
             return (<LandingPage  {...routerProps} />)}}></Route>
           <Route exact path="/login" render={routerProps => {
-            return (<Login {...routerProps} />)}}></Route>
-
+            return (<Login handleLogin={this.handleLogin} {...routerProps} />)}}></Route>
+          <Route path ='/users' render={routerProps => {
+            return (<UserPage current_user={this.state.auth.currentUser} handleLogout={this.handleLogout} {...routerProps} />)}}></Route>
 
 
 
