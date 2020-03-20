@@ -16,13 +16,10 @@ export default class UserPage extends Component {
           <Col><Card><img alt="avatar" src={user_details.avatar_url}></img></Card></Col>
           <Col>
 
-         <h1><Badge>{user_details.name}</Badge></h1>
+         <h1><Badge>{user_details.name}</Badge></h1><br/>
           <Table striped hover>
                   <tbody>
-                    <tr>
-                      <td>Name</td>
-                      <td>{user_details.name}</td>
-                    </tr>
+        
                     <tr>
                       <td>Age</td>
                       <td>{user_details.age}</td>
@@ -36,16 +33,23 @@ export default class UserPage extends Component {
                       <td>{user_details.state}</td>
                     </tr>
                     <tr>
-                      <td>Volume</td>
-                      <td>750 ml</td>
+                      <td>Shipping Address</td>
+                      <td>{user_details.address}, {user_details.zipcode}</td>
+                    </tr>
+                    <tr>
+                      <td>Joined at</td>
+                      <td>{user_details.created_at}</td>
                     </tr>
                   </tbody>
                 </Table>
           </Col>
         </Row>
         <Row>
-          <Col>users orders</Col>
-          <Col>users reviews</Col>
+        <Col>
+        {user_details.name}'s Orders: 
+        <br/>
+        {this.props.current_user.orders.map(order => <ul key={order.id}>{order.created_at}: {order.status}, shipped to: {order.shipped_to}</ul>)}</Col>
+        <Col>{this.props.current_user.reviews.map(review => <ul key={review.id}>{review.created_at}: {review.content}</ul>)}</Col>
         </Row>
       </Container>
         }
