@@ -10,7 +10,6 @@ import api from './api/api.js'
 
 
 
-
 export default class App extends Component {
 
 
@@ -34,7 +33,6 @@ export default class App extends Component {
     }
   }
 
- 
   handleLogin = user => {
     const currentUser = { currentUser: user }
     localStorage.setItem('token', user.token)
@@ -46,8 +44,6 @@ export default class App extends Component {
     localStorage.removeItem('token');
     this.setState({ auth: { currentUser: {} } });
   };
-
-
 
   render(){
     console.log(this.state, "state in app")
