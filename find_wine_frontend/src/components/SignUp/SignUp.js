@@ -8,33 +8,75 @@ import "./SignUp.css"
 
 export default class SignUp extends Component {
 
+
+
+
+
+  state = {
+    error: false,
+    fields: {
+      username: "",
+      password: ""
+    }
+  }
+
+  
+  handleChange = (e) => {
+    const newFields = { ...this.state.fields, [e.target.name]: e.target.value}
+    this.setState({
+      fields: newFields
+    })
+  }
+
+
+
+  // handleSubmit = e => {
+  // e.preventDefault()
+  
+  // api.auth
+  //   .login(this.state.fields.username, this.state.fields.password)
+  //   .then(res => { 
+  //     if(res.error) {
+  //       this.setState({
+  //         error: true
+  //       })
+  //     } else {
+  //       this.props.history.push('/wines')
+  //       this.props.handleLogin(res);
+  //     }
+  //   })
+
+  // }
+
+
   
   handleSubmit = (e) => {
       e.preventDefault()
       e.persist()
       
-      // var data = {name:e.target.name.value , email: e.target.email.value, address: e.target.address.value, city: e.target.city[1].value, state: e.target.state.value, zipcode: e.target.zipcode.value, password:e.target.password.value }
-      // fetch("http://localhost:3000/new",
-      // {
-      //   method: 'POST',
-      //   headers: {'Content-Type': 'application/json',Accept: 'application/json',Authorization: ""},
-      //   body: JSON.stringify(data)
-      // })
-      // .then(resp => resp.json())
-      // .then(dataz => {
-      //   if(dataz.token) {
-      //     this.props.history.push('/login')
-      //   } else {
-      //     alert('No dice brother')
-      //   }
-      // })
-      console.log(e.target.dob.value)
+      var data = {name:e.target.name.value , avatar_url: e.target.avatar.value, email: e.target.email.value, address: e.target.address.value, city: e.target.city.value, state: e.target.state[1].value, zipcode: e.target.zipcode.value, dateofbirth: e.target.dob.value, password:e.target.password.value }
+      fetch("http://localhost:3000/api/v1/new",
+      {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json',Accept: 'application/json',Authorization: ""},
+        body: JSON.stringify(data)
+      })
+      .then(resp => resp.json())
+      .then(dataz => {
+        if(dataz.token) {
+          this.props.history.push('/wines')
+          this.props.handleSignUp(dataz)
+        } else {
+          alert('No dice brother')
+        }
+      })
+      // console.log(e.target)
      
     }
 
-    handleLoginClick = () => {
-      this.props.history.push('/login')
-    }
+    // handleLoginClick = () => {
+    //   this.props.history.push('/login')
+    // }
 
     handleClick= (e) => {
       console.log(e.target.value)
@@ -72,6 +114,13 @@ export default class SignUp extends Component {
   </Form.Group>
   </Form.Row>
 
+  <Form.Row>
+    <Form.Group as={Col} controlId="formAvatarImageUrl">
+      <Form.Label>Avatar</Form.Label>
+      <Form.Control name="avatar" type="avatar" placeholder="Image Url" />
+    </Form.Group>
+  </Form.Row>
+
 
   <Form.Row>
     <Form.Group as={Col} controlId="formGridCity">
@@ -81,7 +130,7 @@ export default class SignUp extends Component {
 
     <Form.Group as={Col} controlId="formGridState">
       <Form.Label>State</Form.Label>
-      <Form.Control as="select" name="city" placeholder="Choose...">
+      <Form.Control as="select" name="state" placeholder="Choose...">
         <option>Choose...</option>
         <option value="AL">Alabama</option>
         <option value="AK">Alaska</option>

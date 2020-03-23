@@ -29,7 +29,7 @@ class TopBar extends Component {
      return  <Nav.Link className="profile" href="/users/1">Hey, {this.props.current_user.user_details.name}</Nav.Link>
    }
       else {
-      return <Nav.Link className="profile" href="/login">Login</Nav.Link>
+      return <Nav.Link className="profile" href="/login">Login/Sign Up</Nav.Link>
       }
   }
 

@@ -41,6 +41,13 @@ export default class App extends Component {
     window.location.reload()
   }
 
+  handleSignup = user => {
+    const currentUser = { currentUser: user }
+    localStorage.setItem('token', user.token)
+    this.setState({ auth: currentUser });
+    window.location.reload()
+  }
+
   handleLogout = () => {
     localStorage.removeItem('token');
     this.setState({ auth: { currentUser: {} } });
@@ -57,7 +64,7 @@ export default class App extends Component {
           <Route exact path="/login" render={routerProps => {
             return (<Login handleLogin={this.handleLogin} {...routerProps} />)}}></Route>
             <Route path="/signup" render={(routerProps) => {
-            return <SignUp {...routerProps} />
+            return <SignUp {...routerProps} handleSignUp={this.handleSignup} />
           }}/>
           <Route path ='/users' render={routerProps => {
             return (<UserPage current_user={this.state.auth.currentUser} handleLogout={this.handleLogout} {...routerProps} />)}}></Route>

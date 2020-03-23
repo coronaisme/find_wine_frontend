@@ -16,18 +16,6 @@ export default class Login extends Component {
     }
   }
 
- 
-
-  // handleLogin = user => {
-  //   const currentUser = { currentUser: user }
-  //   localStorage.setItem('token', user.token)
-  //   this.setState({ auth: currentUser });
-  // }
-
-  // handleLogout = () => {
-  //   localStorage.removeItem('token');
-  //   this.setState({ auth: { currentUser: {} } });
-  // };
   
   handleChange = (e) => {
     const newFields = { ...this.state.fields, [e.target.name]: e.target.value}
