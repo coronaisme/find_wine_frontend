@@ -4,6 +4,9 @@ import './TopBar.css';
 import { setSearchWine } from '../../actions/wines'
 import { connect } from 'react-redux'
 
+const myStyles = {
+  fontFamily: 'Montserrat'
+}
 
 class TopBar extends Component {
 
@@ -43,7 +46,7 @@ class TopBar extends Component {
    
     
     return (
-      <Navbar bg="light" expand="lg">
+      <Navbar style={myStyles} bg="light" expand="lg">
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">

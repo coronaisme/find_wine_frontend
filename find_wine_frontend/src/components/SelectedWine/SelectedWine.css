@@ -31,10 +31,18 @@
 }
 .wine_review_title {
   text-align:left;
+  font-style: bold;
 }
 .mb-2 {
   text-align: left;
 }
 .review_text {
   text-align: left;
+}
+.reviewTextArea {
+  padding-left: 10%;
+  padding-right: 10%;
+}
+.review_button {
+  color:black;
 }

@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+const myStyles = {
+  fontFamily: 'Montserrat'
+}
 
 export default class RenderWine extends Component {
 
@@ -10,8 +13,8 @@ export default class RenderWine extends Component {
           <div className="wine image">
             <img src={`${wine.img_url}`} alt="wine img" height="300" width="275"/>
           </div>
-          <div className="content">
-             <div className="header">{ wine.title }</div>
+          <div style={myStyles} className="content">
+             <div style={myStyles} className="header">{ wine.title }</div>
              
              {wine.year}<br/>
              {wine.varietal}

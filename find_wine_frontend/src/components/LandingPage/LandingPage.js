@@ -6,6 +6,7 @@ import RenderWine from '../RenderWine/RenderWine';
 import SelectedWine from '../SelectedWine/SelectedWine';
 
 
+
 class LandingPage extends Component {
 
   componentDidMount() {
