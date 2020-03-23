@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { setAllWines, setCurrentWine, setSearchWine } from '../../actions/wines'
+import { setAllWines, setCurrentWine } from '../../actions/wines'
 import { Card } from 'semantic-ui-react'
 import RenderWine from '../RenderWine/RenderWine';
 import SelectedWine from '../SelectedWine/SelectedWine';
@@ -17,6 +17,10 @@ class LandingPage extends Component {
     this.props.history.push(`/wines/${wine.id}`)
   }
 
+  filterWinesBySearch = (wines) => {
+    return wines.filter(wine => wine.title.startsWith(this.props.searchInput) || wine.varietal.startsWith(this.props.searchInput) )
+  }
+  
   
 
   render() {
@@ -53,7 +57,7 @@ class LandingPage extends Component {
             varietal === "other" ? 
             filteredVarietalByOther.map(wine => <RenderWine key={wine.id} wine={wine} onWineClick={this.onWineClick} />)
             :
-            wines.map(wine => <RenderWine key={wine.id} wine={wine} onWineClick={this.onWineClick} />)
+            this.filterWinesBySearch(wines).map(wine => <RenderWine key={wine.id} wine={wine} onWineClick={this.onWineClick} />)
             }
         </Card.Group> 
         }
@@ -79,9 +83,6 @@ const mapDispatchToProps = (dispatch) => {
     },
     setAllWines: () => {
       return dispatch(setAllWines())
-    },
-    setSearchWine: (input) => {
-      return dispatch(setSearchWine(input))
     }
   }
 }

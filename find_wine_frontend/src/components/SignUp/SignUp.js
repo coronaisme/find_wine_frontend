@@ -2,35 +2,42 @@
 import React, { Component } from 'react';
 // import HomePage from '../HomePage/HomePage.js';
 import {  Col, Form, Button } from "react-bootstrap";
-// import { Button } from 'semantic-ui-react'
+// import { DatePicker } from 'react-bootstrap-date-picker'
 import "./SignUp.css"
 
 
 export default class SignUp extends Component {
+
+  
   handleSubmit = (e) => {
       e.preventDefault()
       e.persist()
       
-      var data = {name:e.target.name.value , email: e.target.email.value, address: e.target.address.value, city: e.target.city.value, state: e.target.state.value, zipcode: e.target.zipcode.value, password:e.target.password.value }
-      fetch("http://localhost:3000/new",
-      {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json',Accept: 'application/json',Authorization: ""},
-        body: JSON.stringify(data)
-      })
-      .then(resp => resp.json())
-      .then(dataz => {
-        if(dataz.token) {
-          this.props.history.push('/login')
-        } else {
-          alert('No dice brother')
-        }
-      })
+      // var data = {name:e.target.name.value , email: e.target.email.value, address: e.target.address.value, city: e.target.city[1].value, state: e.target.state.value, zipcode: e.target.zipcode.value, password:e.target.password.value }
+      // fetch("http://localhost:3000/new",
+      // {
+      //   method: 'POST',
+      //   headers: {'Content-Type': 'application/json',Accept: 'application/json',Authorization: ""},
+      //   body: JSON.stringify(data)
+      // })
+      // .then(resp => resp.json())
+      // .then(dataz => {
+      //   if(dataz.token) {
+      //     this.props.history.push('/login')
+      //   } else {
+      //     alert('No dice brother')
+      //   }
+      // })
+      console.log(e.target.dob.value)
      
     }
 
     handleLoginClick = () => {
       this.props.history.push('/login')
+    }
+
+    handleClick= (e) => {
+      console.log(e.target.value)
     }
   
 
@@ -38,34 +45,43 @@ export default class SignUp extends Component {
 
     return (
 
-      <Form className="signup-form">
+      <Form className="signup-form" onSubmit={this.handleSubmit}> 
   <Form.Row>
-    <Form.Group as={Col} controlId="formGridEmail">
-      <Form.Label>Email</Form.Label>
-      <Form.Control type="email" placeholder="Enter email" />
+
+  <Form.Group as={Col} controlId="formGridName">
+      <Form.Label>Name</Form.Label>
+      <Form.Control name="name" type="name" placeholder="Name" />
     </Form.Group>
+
 
     <Form.Group as={Col} controlId="formGridPassword">
       <Form.Label>Password</Form.Label>
-      <Form.Control type="password" placeholder="Password" />
+      <Form.Control name="password" type="password" placeholder="Password" />
     </Form.Group>
   </Form.Row>
 
-  <Form.Group controlId="formGridAddress1">
-    <Form.Label>Address</Form.Label>
-    <Form.Control placeholder="1234 Main St" />
+  <Form.Row>
+    <Form.Group as={Col} controlId="formGridEmail">
+      <Form.Label>Email</Form.Label>
+      <Form.Control name="email" type="email" placeholder="Enter email" />
+    </Form.Group>
+
+  <Form.Group as={Col} controlId="formGridAddress">
+    <Form.Label>Shipping Address</Form.Label>
+    <Form.Control name="address" placeholder="1234 Main St" />
   </Form.Group>
+  </Form.Row>
 
 
   <Form.Row>
     <Form.Group as={Col} controlId="formGridCity">
       <Form.Label>City</Form.Label>
-      <Form.Control />
+      <Form.Control name="city" />
     </Form.Group>
 
     <Form.Group as={Col} controlId="formGridState">
       <Form.Label>State</Form.Label>
-      <Form.Control as="select" value="Choose...">
+      <Form.Control as="select" name="city" placeholder="Choose...">
         <option>Choose...</option>
         <option value="AL">Alabama</option>
         <option value="AK">Alaska</option>
@@ -121,9 +137,14 @@ export default class SignUp extends Component {
       </Form.Control>
     </Form.Group>
 
-    <Form.Group as={Col} controlId="formGridZip">
-      <Form.Label>Zip</Form.Label>
-      <Form.Control />
+    <Form.Group type="date" as={Col} controlId="formGridDOB">
+      <Form.Label>Date of Birth</Form.Label>
+      <Form.Control name="dob" type="date"/>
+    </Form.Group>
+
+    <Form.Group type="text" pattern="[0-9]{5}" as={Col} controlId="formGridZip">
+      <Form.Label type="text" pattern="[0-9]{5}" >Zip</Form.Label>
+      <Form.Control name="zipcode" type="text" pattern="[0-9]{5}" />
     </Form.Group>
   </Form.Row>
 

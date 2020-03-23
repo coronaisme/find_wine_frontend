@@ -1,15 +1,27 @@
 import React, { Component } from 'react';
 import { Nav, NavDropdown, Form, Button, FormControl, Navbar } from 'react-bootstrap'
 import './TopBar.css';
+import { setSearchWine } from '../../actions/wines'
+import { connect } from 'react-redux'
 
 
-export default class TopBar extends Component {
+class TopBar extends Component {
 
-  componentDidUpdate() {
-    if (this.props.current_user) {
-      console.log(this.props.current_user, "componentDidUpdate")
+  state = {
+    input: ""
+  }
+
+  // componentDidUpdate() {
+  //   if (this.props.current_user) {
       
-    }
+  //   }
+  // }
+
+  handleChange = (e) => {
+    let inputValue = e.target.value
+    this.setState({
+      input:inputValue
+    })
   }
 
   checkCurrentUser = () => {
@@ -51,8 +63,8 @@ export default class TopBar extends Component {
             <Navbar.Brand href="/wines">Find Wine</Navbar.Brand>
             </Nav>
           <Form inline>
-            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-            <Button variant="outline-dark">Search</Button>
+            <FormControl name="searchInput" onChange={this.handleChange} value={this.state.input} type="text" placeholder="Case Sensitive!!" className="mr-sm-2" />
+            <Button variant="outline-dark" onClick={() => this.props.setSearchWine(this.state.input)} >Search</Button>
           </Form>
            {this.checkCurrentUser()}
             <Nav.Link className="cart" href="#link">Cart</Nav.Link>
@@ -61,3 +73,21 @@ export default class TopBar extends Component {
     )
   }
 }
+
+
+  const mapStateToProps = (state) => {
+    return {
+      searchInput:state.searchInput
+    }
+  }
+  
+  // give ability to update store with action
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      setSearchWine: (input) => {
+        return dispatch(setSearchWine(input))
+      }
+    }
+  }
+
+export default connect(mapStateToProps, mapDispatchToProps)(TopBar)
