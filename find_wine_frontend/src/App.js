@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
-import LandingPage from './components/LandingPage/LandingPage.js'
+import LandingPage from './components/LandingPage/LandingPage.js';
 // import SelectedWine from './components/SelectedWine/SelectedWine.js'
 import { Switch, Route } from 'react-router-dom';
 import TopBar from './components/TopBar/TopBar.js';
-import Login from './components/Login/Login.js'
-import UserPage from './components/UserPage/UserPage.js'
-import api from './api/api.js'
+import Login from './components/Login/Login.js';
+import UserPage from './components/UserPage/UserPage.js';
+import SignUp from './components/SignUp/SignUp.js';
+import api from './api/api.js';
 
 
 
@@ -55,6 +56,9 @@ export default class App extends Component {
             return (<LandingPage  {...routerProps} />)}}></Route>
           <Route exact path="/login" render={routerProps => {
             return (<Login handleLogin={this.handleLogin} {...routerProps} />)}}></Route>
+            <Route path="/signup" render={(routerProps) => {
+            return <SignUp {...routerProps} />
+          }}/>
           <Route path ='/users' render={routerProps => {
             return (<UserPage current_user={this.state.auth.currentUser} handleLogout={this.handleLogout} {...routerProps} />)}}></Route>
 
