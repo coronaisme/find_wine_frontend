@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Card, Table, Badge } from 'react-bootstrap'
+import { Container, Row, Col, Table, Badge } from 'react-bootstrap'
+import './UserPage.css'
 
 export default class UserPage extends Component {
 
@@ -15,10 +16,10 @@ export default class UserPage extends Component {
         {user_details &&
         <Container>
         <Row>
-          <Col><Card><img alt="avatar" src={user_details.avatar_url}></img></Card></Col>
+          <Col><img alt="avatar" src={user_details.avatar_url}></img></Col>
           <Col>
-
-         <h1><Badge>{user_details.name}</Badge></h1><br/>
+          
+        <h1><Badge>{user_details.name}, <a className="logoutClick" href="/wines" onClick={this.props.handleLogout}>logout</a></Badge></h1><br/>
           <Table striped hover>
                   <tbody>
         
@@ -50,8 +51,8 @@ export default class UserPage extends Component {
         <Col>
         {user_details.name}'s Orders: 
         <br/>
-        {this.props.current_user.orders.map(order => <ul key={order.id}>{order.created_at.toString().split("T")[0]}: {order.status}, shipped to: {order.shipped_to}</ul>)}</Col>
-        <Col>{this.props.current_user.reviews.map(review => <ul key={review.id}>{review.created_at.toString().split("T")[0]}: {review.content}</ul>)}</Col>
+        {this.props.current_user.orders.map(order => <ul key={order.id}>{order.created_at.toString().split("T")[0]} : {order.status}, shipped to : {order.shipped_to}</ul>)}</Col>
+        <Col>{this.props.current_user.reviews.map(review => <ul key={review.id}>{review.created_at.toString().split("T")[0]} : {review.content}</ul>)}</Col>
         </Row>
       </Container>
         }
