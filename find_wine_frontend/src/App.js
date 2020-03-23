@@ -54,10 +54,10 @@ export default class App extends Component {
   };
 
   render(){
-    console.log(this.state, "state in app")
+    
     return (
       <div className="App">
-        <TopBar current_user={this.state.auth.currentUser} />
+        <TopBar current_user={this.state.auth.currentUser} handleLogout={this.handleLogout} />
         <Switch>
           <Route exact path="/wines" render={routerProps => {
             return (<LandingPage  {...routerProps} />)}}></Route>

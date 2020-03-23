@@ -26,7 +26,13 @@ class TopBar extends Component {
 
   checkCurrentUser = () => {
    if (this.props.current_user.user_details) {
-     return  <Nav.Link className="profile" href="/users/1">Hey, {this.props.current_user.user_details.name}</Nav.Link>
+     return  (
+       <>
+       <Nav.Link className="profile" href="/users/1">Hey, {this.props.current_user.user_details.name}</Nav.Link>
+       <Nav.Link className="logoutclick" onClick={this.props.handleLogout} href="/wines">Logout</Nav.Link>
+       </>
+     )
+
    }
       else {
       return <Nav.Link className="profile" href="/login">Login/Sign Up</Nav.Link>
@@ -35,7 +41,6 @@ class TopBar extends Component {
 
   render() {
    
-    console.log(this.props.current_user, "in top bar")
     
     return (
       <Navbar bg="light" expand="lg">

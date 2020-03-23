@@ -3,29 +3,38 @@ import { Container, Row, Col, Table, Badge } from 'react-bootstrap'
 import './UserPage.css'
 
 export default class UserPage extends Component {
-
-
+  
+  
+  getAge = (dateString) => {
+    let today = new Date();
+    let birthDate = new Date(dateString)
+    let age = today.getFullYear() - birthDate.getFullYear();
+    let m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
+  }
  
 
   render() {
+
     const { user_details } = this.props.current_user
     
-   
     return (
       <div>
         {user_details &&
         <Container>
         <Row>
-          <Col><img alt="avatar" src={user_details.avatar_url}></img></Col>
+          <Col><img className="image" alt="avatar" src={user_details.avatar_url}></img></Col>
           <Col>
           
-        <h1><Badge>{user_details.name}, <a className="logoutClick" href="/wines" onClick={this.props.handleLogout}>logout</a></Badge></h1><br/>
+        <h1><Badge>{user_details.name}</Badge></h1><br/>
           <Table striped hover>
                   <tbody>
-        
                     <tr>
                       <td>Age</td>
-                      <td>{user_details.age}</td>
+                      <td>{this.getAge(user_details.dateofbirth)}</td>
                     </tr>
                     <tr>
                       <td>City</td>
