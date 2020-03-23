@@ -5,12 +5,12 @@ import {  Col, Form, Button } from "react-bootstrap";
 // import { DatePicker } from 'react-bootstrap-date-picker'
 import "./SignUp.css"
 
+const myStyles = {
+  fontFamily: 'Montserrat'
+}
+
 
 export default class SignUp extends Component {
-
-
-
-
 
   state = {
     error: false,

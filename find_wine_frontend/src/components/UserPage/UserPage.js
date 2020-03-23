@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { Container, Row, Col, Table, Badge } from 'react-bootstrap'
 import './UserPage.css'
 
+const myStyles = {
+  fontFamily: 'Montserrat'
+}
+
 export default class UserPage extends Component {
   
   
@@ -29,8 +33,8 @@ export default class UserPage extends Component {
           <Col><img className="image" alt="avatar" src={user_details.avatar_url}></img></Col>
           <Col>
           
-        <h1><Badge>{user_details.name}</Badge></h1><br/>
-          <Table striped hover>
+        <h1 style={myStyles} ><Badge>{user_details.name}</Badge></h1><br/>
+          <Table style={myStyles} striped hover>
                   <tbody>
                     <tr>
                       <td>Age</td>
@@ -57,11 +61,11 @@ export default class UserPage extends Component {
           </Col>
         </Row>
         <Row>
-        <Col>
+        <Col style={myStyles} >
         {user_details.name}'s Orders: 
         <br/>
         {this.props.current_user.orders.map(order => <ul key={order.id}>{order.created_at.toString().split("T")[0]} : {order.status}, shipped to : {order.shipped_to}</ul>)}</Col>
-        <Col>{this.props.current_user.reviews.map(review => <ul key={review.id}>{review.created_at.toString().split("T")[0]} : {review.content}</ul>)}</Col>
+        <Col style={myStyles} >{this.props.current_user.reviews.map(review => <ul key={review.id}>{review.created_at.toString().split("T")[0]} : {review.content}</ul>)}</Col>
         </Row>
       </Container>
         }

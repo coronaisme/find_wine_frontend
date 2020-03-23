@@ -1,10 +1,11 @@
-
-
-
 import React, {Component} from 'react';
 import "./Login.css"
 import api from "../../api/api.js"
 import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react'
+
+const myStyles = {
+  fontFamily: 'Montserrat'
+}
 
 export default class Login extends Component {
   
@@ -55,13 +56,13 @@ export default class Login extends Component {
     return (
       <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
     <Grid.Column style={{ maxWidth: 450 }}>
-      {this.state.error ? <Header as="h2" color="blue" textAlign="center">Invalid</Header> : null}
-      <Header as='h2' color='blue' textAlign='center'>
+      {this.state.error ? <Header style={myStyles} as="h2" color="blue" textAlign="center">Invalid</Header> : null}
+      <Header style={myStyles} as='h2' color='black' textAlign='center'>
         Log-in to your account
       </Header>
       <Form size='large' onSubmit={this.handleSubmit}>
         <Segment stacked>
-          <Form.Input fluid icon='user' iconPosition='left' placeholder='Username' name="username"  value={fields.username}
+          <Form.Input style={myStyles} fluid icon='user' iconPosition='left' placeholder='Username' name="username"  value={fields.username}
         onChange={this.handleChange}/>
           <Form.Input
             fluid
@@ -74,12 +75,12 @@ export default class Login extends Component {
             onChange={this.handleChange}
             />
 
-          <Button color='blue' fluid size='large'>
+          <Button color='black' fluid size='large'>
             Login
           </Button>
         </Segment>
       </Form>
-      <Message onClick={this.handleSignUp} fluid="true" style={{cursor:"pointer"}}>
+      <Message  onClick={this.handleSignUp} fluid="true" style={{cursor:"pointer"}}>
        Sign Up
       </Message>
     </Grid.Column>
