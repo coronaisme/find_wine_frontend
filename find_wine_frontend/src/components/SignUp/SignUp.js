@@ -65,7 +65,7 @@ export default class SignUp extends Component {
 
     return (
 
-      <Form className="signup-form" onSubmit={this.handleSubmit}> 
+      <Form style={myStyles} className="signup-form" onSubmit={this.handleSubmit}> 
   <Form.Row>
 
   <Form.Group as={Col} controlId="formGridName">
