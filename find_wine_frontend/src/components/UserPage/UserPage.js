@@ -8,6 +8,8 @@ export default class UserPage extends Component {
 
   render() {
     const { user_details } = this.props.current_user
+    
+   
     return (
       <div>
         {user_details &&
@@ -38,7 +40,7 @@ export default class UserPage extends Component {
                     </tr>
                     <tr>
                       <td>Joined at</td>
-                      <td>{user_details.created_at}</td>
+                      <td>{user_details.created_at.toString().split("T")[0]}</td>
                     </tr>
                   </tbody>
                 </Table>
@@ -48,8 +50,8 @@ export default class UserPage extends Component {
         <Col>
         {user_details.name}'s Orders: 
         <br/>
-        {this.props.current_user.orders.map(order => <ul key={order.id}>{order.created_at}: {order.status}, shipped to: {order.shipped_to}</ul>)}</Col>
-        <Col>{this.props.current_user.reviews.map(review => <ul key={review.id}>{review.created_at}: {review.content}</ul>)}</Col>
+        {this.props.current_user.orders.map(order => <ul key={order.id}>{order.created_at.toString().split("T")[0]}: {order.status}, shipped to: {order.shipped_to}</ul>)}</Col>
+        <Col>{this.props.current_user.reviews.map(review => <ul key={review.id}>{review.created_at.toString().split("T")[0]}: {review.content}</ul>)}</Col>
         </Row>
       </Container>
         }
