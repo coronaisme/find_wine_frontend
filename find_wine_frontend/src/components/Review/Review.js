@@ -7,24 +7,25 @@ const myStyles = {
 
 export default class Review extends Component {
   render() {
+    const { review } = this.props.review
+    const { user } = this.props.review.user
+    console.log(this.props.review.review, "review")
+    console.log(this.props.review.user, "user")
+
     return (
       <div className="reviewContainer">
         <Card>
             <Card.Body>
               <Card.Title style={myStyles} className="wine_review_title">Review Title</Card.Title>
                 <Card.Text style={myStyles} className="review_text">
-                  As the second argument passed in to connect, mapDispatchToProps is used for dispatching actions to the store.
-                  dispatch is a function of the Redux store. You call store.dispatch to dispatch an action. This is the only way to trigger a state change.
-                  With React Redux, your components never access the store directly - connect does it for you. React Redux gives you two ways to let components dispatch actions:
-                  By default, a connected component receives props.dispatch and can dispatch actions itself.
-                  connect can accept an argument called mapDispatchToProps, which lets you create functions that dispatch when called, and pass those functions as props to your component.
-                  The mapDispatchToProps functions are normally referred to as mapDispatch for short, but the actual variable name used can be whatever you want.
+                    {review.content}
                 </Card.Text>
-              <Card.Subtitle style={myStyles} className="mb-2 text-muted">Reviewer Name</Card.Subtitle>
+              <Card.Subtitle style={myStyles} className="mb-2 text-muted">{this.props.review.user.name}</Card.Subtitle>
               {/* <Card.Link href="#">+ </Card.Link>
               <Card.Link href="#">-</Card.Link> */}
             </Card.Body>
           </Card>
+          <br/>
       </div>
     )
   }

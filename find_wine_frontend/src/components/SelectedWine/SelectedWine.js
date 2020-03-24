@@ -8,20 +8,60 @@ const myStyles = {
 }
 
 
+
 export default class SelectedWine extends Component {
+
+  state = {
+    reviews:[],
+    reviewContent: ""
+  }
+
+
+  componentDidMount() {
+   return fetch('http://localhost:3000/api/v1/reviews').then(res => res.json())
+   .then(data => 
+    this.setState({
+     reviews:this.getSelectedWinesReviews(data.reviews)
+     
+   }, () => console.log(data)));
+  }
+
+
+  getSelectedWinesReviews = (reviews) => {
+    return reviews.filter(review => review.review.wine_id === this.props.wine.id )
+  }
+
+
+
+
+
+  handleChange =(e) => {
+    this.setState({
+      reviewContent:e.target.value
+    })
+  }
 
   handleSubmit = (e) => {
     e.preventDefault()
     e.persist()
     
-    let data = {content:e.target.review.value, wine_id:this.props.wine.id, user_id:this.props.current_user.user_details.id }
+    let data = {content:this.state.reviewContent, wine_id:this.props.wine.id, user_id:this.props.current_user.user_details.id }
     fetch('http://localhost:3000/api/v1/reviews/new', 
     {
       method: 'POST',
       headers: {'Content-Type': 'application/json',Accept: 'application/json',Authorization: ""},
       body: JSON.stringify(data)
     }).then(res => res.json()).then(data => {
-      console.log(data, "review")
+      this.setState({
+        reviews: [...this.state.reviews, data]
+      })
+      // console.log(data)
+      if(data.error) {
+        alert(`${data.error}`)
+        this.setState({
+          reviewContent: ""
+        })
+      }
     })
 
   }
@@ -31,7 +71,7 @@ export default class SelectedWine extends Component {
   render() {
 
     const { wine, current_user } = this.props
-    console.log(wine)
+    // console.log(wine)
     
 
     return (
@@ -81,7 +121,7 @@ export default class SelectedWine extends Component {
           </Col>
         </Row>
           <Row className="reviews_row"> 
-            {<Review />}
+            {this.state.reviews.map(review => <Review key={review.review.id} review={review}/>)}
           </Row>
        </Container>
           <br/>
@@ -90,11 +130,12 @@ export default class SelectedWine extends Component {
         <Form onSubmit={this.handleSubmit}>
           <Form.Group style={myStyles} className="reviewTextArea" controlId="reviewTextArea">
               <Form.Label>Write a Review!</Form.Label>
-              <Form.Control name="review" as="textarea" rows="5" />
+              <Form.Control onChange={this.handleChange} value={this.state.reviewContent} name="review" as="textarea" rows="5" />
           </Form.Group>
           <br/>
             <Button type="submit" variant="dark">Enter Review</Button>
         </Form>
+        
           }
       </div>
     )
