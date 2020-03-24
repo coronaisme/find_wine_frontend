@@ -10,14 +10,28 @@ const myStyles = {
 
 export default class SelectedWine extends Component {
 
+  handleSubmit = (e) => {
+    e.preventDefault()
+    e.persist()
+    
+    let data = {content:e.target.review.value, wine_id:this.props.wine.id, user_id:this.props.current_user.user_details.id }
+    fetch('http://localhost:3000/api/v1/reviews/new', 
+    {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json',Accept: 'application/json',Authorization: ""},
+      body: JSON.stringify(data)
+    }).then(res => res.json()).then(data => {
+      console.log(data, "review")
+    })
 
+  }
   
   
 
   render() {
 
     const { wine, current_user } = this.props
-    
+    console.log(wine)
     
 
     return (
@@ -72,13 +86,16 @@ export default class SelectedWine extends Component {
        </Container>
           <br/>
           {/* reviews */}
+          {current_user.user_details &&
+        <Form onSubmit={this.handleSubmit}>
           <Form.Group style={myStyles} className="reviewTextArea" controlId="reviewTextArea">
               <Form.Label>Write a Review!</Form.Label>
               <Form.Control name="review" as="textarea" rows="5" />
           </Form.Group>
           <br/>
             <Button type="submit" variant="dark">Enter Review</Button>
-
+        </Form>
+          }
       </div>
     )
   }
