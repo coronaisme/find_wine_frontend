@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import "./Login.css"
 import api from "../../api/api.js"
-import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Message } from 'semantic-ui-react'
 
 const myStyles = {
   fontFamily: 'Montserrat'
@@ -34,7 +34,7 @@ export default class Login extends Component {
       if(res.error) {
         this.setState({
           error: true
-        })
+        }, () => window.location.reload())
       } else {
         this.props.history.push('/wines')
         this.props.handleLogin(res);
@@ -54,14 +54,14 @@ export default class Login extends Component {
     const { fields } = this.state
     
     return (
-      <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
-    <Grid.Column style={{ maxWidth: 450 }}>
-      {this.state.error ? <Header style={myStyles} as="h2" color="blue" textAlign="center">Invalid</Header> : null}
-      <Header style={myStyles} as='h2' color='black' textAlign='center'>
-        Log-in to your account
+      <Grid textAlign='center' style={{ height: '100vh', myStyles }} verticalAlign='middle'>
+    <Grid.Column style={{ maxWidth: 450, myStyles }}>
+      {this.state.error ? <Header className="invalid-header" style={myStyles} as="h2" color="black" textAlign="center">Invalid Login</Header> : null}
+      <Header className="login-header" style={myStyles} as='h2' color='black' textAlign='center'>
+        Log-In 
       </Header>
       <Form size='large' onSubmit={this.handleSubmit}>
-        <Segment stacked>
+       
           <Form.Input style={myStyles} fluid icon='user' iconPosition='left' placeholder='Username' name="username"  value={fields.username}
         onChange={this.handleChange}/>
           <Form.Input
@@ -75,12 +75,12 @@ export default class Login extends Component {
             onChange={this.handleChange}
             />
 
-          <Button color='black' fluid size='large'>
+          <Button color='black' fluid size='large' style={myStyles}>
             Login
           </Button>
-        </Segment>
+
       </Form>
-      <Message  onClick={this.handleSignUp} fluid="true" style={{cursor:"pointer"}}>
+      <Message  onClick={this.handleSignUp} fluid="true" style={{cursor:"pointer", myStyles}}>
        Sign Up
       </Message>
     </Grid.Column>
