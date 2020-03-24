@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Nav, NavDropdown, Form, Button, FormControl, Navbar } from 'react-bootstrap'
+import { Nav, NavDropdown, Form, FormControl, Navbar } from 'react-bootstrap'
 import './TopBar.css';
 import { setSearchWine } from '../../actions/wines'
 import { connect } from 'react-redux'
@@ -14,18 +14,16 @@ class TopBar extends Component {
     input: ""
   }
 
-  // componentDidUpdate() {
-  //   if (this.props.current_user) {
-      
-  //   }
-  // }
 
   handleChange = (e) => {
+    e.persist()
     let inputValue = e.target.value
     this.setState({
       input:inputValue
-    })
+    }, () => this.props.setSearchWine(this.state.input)
+   )
   }
+
 
   checkCurrentUser = () => {
    if (this.props.current_user.user_details) {
@@ -70,9 +68,10 @@ class TopBar extends Component {
             <Nav className="title" >
             <Navbar.Brand className="title" href="/wines">F I N D | W I N E</Navbar.Brand>
             </Nav>
+            {/* value={this.state.input} */}
           <Form inline>
-            <FormControl name="searchInput" onChange={this.handleChange} value={this.state.input} type="text" placeholder="Case Sensitive!!" className="mr-sm-2" />
-            <Button variant="outline-dark" onClick={() => this.props.setSearchWine(this.state.input)} >Search</Button>
+            <FormControl name="searchInput" onChange={this.handleChange} value={this.state.input} type="text" placeholder="Search" className="mr-sm-2" />
+            {/* <Button variant="outline-dark" onClick={() => this.props.setSearchWine(this.state.input)} >Search</Button> */}
           </Form>
            {this.checkCurrentUser()}
             <Nav.Link className="cart" href="#link">Cart</Nav.Link>
