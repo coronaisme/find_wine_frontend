@@ -1,5 +1,6 @@
 .row1 {
   align-items: stretch;
+  
 }
 .wine_year {
   text-align:left;
@@ -28,6 +29,7 @@
 }
 .reviews_row {
   text-align: center;
+  display:block !important;
 }
 .wine_review_title {
   text-align:left;

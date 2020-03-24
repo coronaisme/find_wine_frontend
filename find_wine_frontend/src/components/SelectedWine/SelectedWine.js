@@ -3,6 +3,7 @@ import { Container, Row, Col, Image, Button, Table, Form } from 'react-bootstrap
 import Review from '../Review/Review.js'
 import './SelectedWine.css'
 
+
 const myStyles = {
   fontFamily: 'Montserrat'
 }

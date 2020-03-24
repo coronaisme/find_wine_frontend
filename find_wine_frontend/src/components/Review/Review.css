@@ -1,0 +1,21 @@
+.user-card {
+text-align: left;
+}
+
+.review-card-container{
+  flex-direction: row !important;
+}
+.card-image{
+  text-align: left !important;
+  /* width:20% !important; */
+}
+.card-row{
+  display: contents !important;
+}
+
+.wine_review_title{
+  text-align: center !important;
+}
+.mb-2{
+  text-align: right !important;
+}
