@@ -1,8 +1,10 @@
 
 .title {
- padding-right: 20% !important;
+ /* padding-right: 20% !important;
  padding-left: 20%;
- margin-right: 1%;
+ margin-right: 1%; */
+ font-weight: bolder;
+ text-align: center;
 }
 .cart {
   color: black;

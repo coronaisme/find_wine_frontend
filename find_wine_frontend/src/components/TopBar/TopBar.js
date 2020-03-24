@@ -68,7 +68,7 @@ class TopBar extends Component {
             </NavDropdown>
           </Nav>
             <Nav className="title" >
-            <Navbar.Brand href="/wines">Find Wine</Navbar.Brand>
+            <Navbar.Brand className="title" href="/wines">F I N D | W I N E</Navbar.Brand>
             </Nav>
           <Form inline>
             <FormControl name="searchInput" onChange={this.handleChange} value={this.state.input} type="text" placeholder="Case Sensitive!!" className="mr-sm-2" />
