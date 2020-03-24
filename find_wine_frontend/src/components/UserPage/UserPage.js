@@ -24,7 +24,7 @@ export default class UserPage extends Component {
   render() {
 
     const { user_details } = this.props.current_user
-    
+    console.log(user_details)
     return (
       <div>
         {user_details &&

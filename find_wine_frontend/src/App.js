@@ -55,24 +55,27 @@ export default class App extends Component {
 
   render(){
     
+  
     return (
       <div className="App">
         <TopBar current_user={this.state.auth.currentUser} handleLogout={this.handleLogout} />
         <Switch>
           <Route exact path="/wines" render={routerProps => {
-            return (<LandingPage  {...routerProps} />)}}></Route>
+            return (<LandingPage current_user={this.state.auth.currentUser} {...routerProps} />)}}></Route>
+
           <Route exact path="/login" render={routerProps => {
             return (<Login handleLogin={this.handleLogin} {...routerProps} />)}}></Route>
-            <Route path="/signup" render={(routerProps) => {
-            return <SignUp {...routerProps} handleSignUp={this.handleSignup} />
-          }}/>
+
+          <Route path="/signup" render={(routerProps) => {
+            return <SignUp {...routerProps} handleSignUp={this.handleSignup} />}}></Route>
+
           <Route path ='/users' render={routerProps => {
             return (<UserPage current_user={this.state.auth.currentUser} handleLogout={this.handleLogout} {...routerProps} />)}}></Route>
 
 
 
           <Route path="/" render={routerProps => {
-          return (<LandingPage {...routerProps} />)}}></Route>
+          return (<LandingPage current_user={this.state.auth.currentUser} {...routerProps} />)}}></Route>
         </Switch>
       </div>
     );

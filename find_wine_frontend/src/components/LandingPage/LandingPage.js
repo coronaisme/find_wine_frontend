@@ -23,9 +23,10 @@ class LandingPage extends Component {
   }
   
   
+  
 
   render() {
-    const { wines, currentWine } = this.props
+    const { wines, currentWine, current_user } = this.props
     const varietal = this.props.location.pathname.split("/")[2]
     const country = this.props.location.pathname.split("/")[3]
    
@@ -34,15 +35,21 @@ class LandingPage extends Component {
     const filteredVarietalByOther = wines.filter(wine => wine.varietal !== "Zinfandel" && wine.varietal !== "Cabernet Sauvignon" && wine.varietal !== "Merlot" && wine.varietal !== "Chardonnay" && wine.varietal !== "Sauvignon Blanc")
     const filteredWinesByCountry = wines.filter(wine => wine.country === country)
     const filteredCountryByOther = wines.filter(wine => wine.country !== "France" && wine.country !== "Italy" && wine.country !== "USA")
-  
- 
+    
+
+
+
+
+   
+
     return (
       
       <div className="LandingPage">
+        
         <br/>
         <br/>
         <br/>
-          { currentWine ? <SelectedWine wine={currentWine} /> 
+          { currentWine  ? <SelectedWine current_user={current_user} wine={currentWine} /> 
               :
         <Card.Group centered itemsPerRow={4}>
             {

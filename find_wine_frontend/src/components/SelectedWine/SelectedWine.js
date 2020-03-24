@@ -7,14 +7,22 @@ const myStyles = {
   fontFamily: 'Montserrat'
 }
 
+
 export default class SelectedWine extends Component {
+
+
+  
+  
 
   render() {
 
-    const { wine } = this.props
+    const { wine, current_user } = this.props
+    
+    
 
     return (
       <div style={myStyles} className="outer">
+        
        <Container fluid="md">
         <Row className="row1">
           {/* artwork on the left */}
@@ -58,17 +66,19 @@ export default class SelectedWine extends Component {
                 </Table>
           </Col>
         </Row>
-        <Row className="reviews_row"> 
-          {<Review />}
-        </Row>
-      </Container>
-      <br/>
-      <Form.Group style={myStyles} className="reviewTextArea" controlId="exampleForm.ControlTextarea1">
-      <Form.Label>Write a Review!</Form.Label>
-      <Form.Control as="textarea" rows="5" />
-      </Form.Group>
-      <br/>
-      <Button type="submit" variant="dark">Enter Review</Button>
+          <Row className="reviews_row"> 
+            {<Review />}
+          </Row>
+       </Container>
+          <br/>
+          {/* reviews */}
+          <Form.Group style={myStyles} className="reviewTextArea" controlId="reviewTextArea">
+              <Form.Label>Write a Review!</Form.Label>
+              <Form.Control name="review" as="textarea" rows="5" />
+          </Form.Group>
+          <br/>
+            <Button type="submit" variant="dark">Enter Review</Button>
+
       </div>
     )
   }
