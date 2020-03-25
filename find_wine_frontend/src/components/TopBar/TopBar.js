@@ -47,8 +47,9 @@ class TopBar extends Component {
     return (
       <Navbar style={myStyles} bg="light" expand="lg">
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">
+        
+        <Navbar.Collapse id="basic-navbar-nav">    
+          <Nav >
             <NavDropdown title="VARIETAL" id="basic-nav-dropdown">
               <NavDropdown.Item href="/wines/Cabernet Sauvignon">Cabernet Sauvignon</NavDropdown.Item>
               <NavDropdown.Item href="/wines/Zinfandel">Zinfandel</NavDropdown.Item>
@@ -67,15 +68,15 @@ class TopBar extends Component {
               <NavDropdown.Item href="/wines/country/other">Other</NavDropdown.Item>
             </NavDropdown>
           </Nav>
-            <Nav className="title" >
-            <Navbar.Brand className="title" href="/wines">F I N D | W I N E</Navbar.Brand>
-            </Nav>
-            {/* value={this.state.input} */}
-          <Form inline>
-            <FormControl name="searchInput" onChange={this.handleChange} value={this.state.input} type="text" placeholder="Search" className="mr-sm-2" />
-            {/* <Button variant="outline-dark" onClick={() => this.props.setSearchWine(this.state.input)} >Search</Button> */}
-          </Form>
-           {this.checkCurrentUser()}
+          <Nav>
+              <Navbar.Brand className="title" href="/wines">F I N D | W I N E</Navbar.Brand>
+          </Nav>
+          <Nav>
+            <Form inline>
+              <FormControl name="searchInput" onChange={this.handleChange} value={this.state.input} type="text" placeholder="Search" className="mr-sm-2" />
+            </Form>
+            {this.checkCurrentUser()}
+          </Nav>
         </Navbar.Collapse>
       </Navbar>
     )

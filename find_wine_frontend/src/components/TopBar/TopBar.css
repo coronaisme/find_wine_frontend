@@ -1,9 +1,8 @@
 
 .title {
- align-self: center;
- margin-right: 18rem; 
+ align-self: center !important;
  font-weight: bolder;
- text-align: center;
+ text-align: center !important;
 }
 .cart {
   color:rgba(0,0,0,.5);
@@ -16,4 +15,8 @@
 }
 .logoutclick{
   color: rgba(0,0,0,.5)
+}
+#basic-navbar-nav{
+justify-content: space-between !important;
+
 }

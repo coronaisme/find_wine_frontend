@@ -3,7 +3,7 @@
 //async thunk action (returns a function) -> allows thunk to know that it 
 //can wait for async to finish before dispatching
 
-import { SET_ALL_WINES, SET_CURRENT_WINE, SET_SEARCH_WINES } from './types';
+import { SET_ALL_WINES, SET_CURRENT_WINE, SET_SEARCH_WINES, SET_CART } from './types';
 import { getWines } from '../api/api.js';
 
 
@@ -35,6 +35,15 @@ export function setSearchWine(input) {
     dispatch({
       type: SET_SEARCH_WINES,
       payload:input
+    })
+  }
+}
+
+export function setCart(wine) {
+  return function(dispatch) {
+    dispatch({
+      type: SET_CART,
+      payload:wine
     })
   }
 }
