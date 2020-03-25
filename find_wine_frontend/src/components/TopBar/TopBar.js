@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Nav, NavDropdown, Form, FormControl, Navbar } from 'react-bootstrap'
+import { Nav, NavDropdown, Form, FormControl, Navbar, Container } from 'react-bootstrap'
 import './TopBar.css';
 import { setSearchWine } from '../../actions/wines'
 import { connect } from 'react-redux'
@@ -29,14 +29,15 @@ class TopBar extends Component {
    if (this.props.current_user.user_details) {
      return  (
        <>
-       <Nav.Link className="profile" href="/users/1">Hey, {this.props.current_user.user_details.name}</Nav.Link>
-       <Nav.Link className="logoutclick" onClick={this.props.handleLogout} href="/wines">Logout</Nav.Link>
+       <Nav.Link className="profile" href="/users/1">HEY, {this.props.current_user.user_details.name}</Nav.Link>
+       <Nav.Link className="logoutclick" onClick={this.props.handleLogout} href="/wines">LOGOUT</Nav.Link>
+       <Nav.Link className="cart" href="#link">CART</Nav.Link>
        </>
      )
 
    }
       else {
-      return <Nav.Link className="profile" href="/login">Login/Sign Up</Nav.Link>
+      return <Nav.Link className="profile" href="/login">LOG IN</Nav.Link>
       }
   }
 
@@ -48,7 +49,7 @@ class TopBar extends Component {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <NavDropdown title="Varietal" id="basic-nav-dropdown">
+            <NavDropdown title="VARIETAL" id="basic-nav-dropdown">
               <NavDropdown.Item href="/wines/Cabernet Sauvignon">Cabernet Sauvignon</NavDropdown.Item>
               <NavDropdown.Item href="/wines/Zinfandel">Zinfandel</NavDropdown.Item>
               <NavDropdown.Item href="/wines/Merlot">Merlot</NavDropdown.Item>
@@ -57,7 +58,8 @@ class TopBar extends Component {
               <NavDropdown.Divider />
               <NavDropdown.Item href="/wines/other">Other</NavDropdown.Item>
             </NavDropdown>
-            <NavDropdown title="Country" id="basic-nav-dropdown">
+            <Container></Container>
+            <NavDropdown title="COUNTRY" id="basic-nav-dropdown">
               <NavDropdown.Item href="/wines/country/France">France</NavDropdown.Item>
               <NavDropdown.Item href="/wines/country/Italy">Italy</NavDropdown.Item>
               <NavDropdown.Item href="/wines/country/USA">USA</NavDropdown.Item>
@@ -74,7 +76,6 @@ class TopBar extends Component {
             {/* <Button variant="outline-dark" onClick={() => this.props.setSearchWine(this.state.input)} >Search</Button> */}
           </Form>
            {this.checkCurrentUser()}
-            <Nav.Link className="cart" href="#link">Cart</Nav.Link>
         </Navbar.Collapse>
       </Navbar>
     )

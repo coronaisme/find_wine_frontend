@@ -7,6 +7,7 @@ import TopBar from './components/TopBar/TopBar.js';
 import Login from './components/Login/Login.js';
 import UserPage from './components/UserPage/UserPage.js';
 import SignUp from './components/SignUp/SignUp.js';
+import Cart from './components/Cart/Cart.js';
 import api from './api/api.js';
 
 
@@ -70,7 +71,10 @@ export default class App extends Component {
             return <SignUp {...routerProps} handleSignUp={this.handleSignup} />}}></Route>
 
           <Route path ='/users' render={routerProps => {
-            return (<UserPage current_user={this.state.auth.currentUser} handleLogout={this.handleLogout} {...routerProps} />)}}></Route>
+            return (<UserPage current_user={this.state.auth.currentUser} {...routerProps} />)}}></Route>
+
+          <Route path ='/cart' render={routerProps => {
+            return (<Cart current_user={this.state.auth.currentUser} {...routerProps} />)}}></Route>
 
 
 

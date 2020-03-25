@@ -1,12 +1,14 @@
 
 .title {
+ align-self: center;
  margin-right: 18rem; 
  font-weight: bolder;
  text-align: center;
 }
 .cart {
-  color: black;
+  color:rgba(0,0,0,.5);
 }
 .profile {
-  color: black;
+  color: rgba(0,0,0,.5);
+ 
 }
