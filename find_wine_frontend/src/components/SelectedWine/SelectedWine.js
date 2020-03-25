@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import { setCart } from '../../actions/wines'
 import { Container, Row, Col, Image, Button, Table, Form } from 'react-bootstrap'
 import Review from '../Review/Review.js'
 import './SelectedWine.css'
@@ -8,7 +10,7 @@ const myStyles = {
 }
 
 
-export default class SelectedWine extends Component {
+class SelectedWine extends Component {
 
   state = {
     reviews:[],
@@ -60,6 +62,10 @@ export default class SelectedWine extends Component {
     })
   }
 
+  onCartClick = (wine) => {
+    this.props.setCart(this.props.wine)
+  }
+
   render() {
 
     const { wine, current_user } = this.props
@@ -84,7 +90,7 @@ export default class SelectedWine extends Component {
                 <br/>
                 <p style={myStyles} className="wine_score">WE | {wine.score}</p>
                 <br/>
-                <div style={myStyles} className="btn_div"><Button className="add_to_cart_btn" variant="dark" size="lg" active>Add to Cart</Button></div>
+                <div style={myStyles} className="btn_div"><Button onClick={this.onCartClick} className="add_to_cart_btn" variant="dark" size="lg" active>Add to Cart</Button></div>
                 <br/> 
                 <Table style={myStyles} striped hover>
                   <tbody>
@@ -134,3 +140,24 @@ export default class SelectedWine extends Component {
     )
   }
 }
+
+//state in redux
+const mapStateToProps = (state) => {
+  return {
+    wines:state.wines,
+    currentWine:state.currentWine,
+    searchInput:state.searchInput,
+    cart:state.cart
+  }
+}
+
+// give ability to update store with action
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setCart: (wine) => {
+      return dispatch(setCart(wine))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SelectedWine)
