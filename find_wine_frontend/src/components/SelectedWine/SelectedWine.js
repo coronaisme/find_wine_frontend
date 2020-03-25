@@ -66,12 +66,12 @@ class SelectedWine extends Component {
     this.props.setCart(this.props.wine)
   }
 
+
   render() {
 
     const { wine, current_user } = this.props
     
     
-
     return (
       <div style={myStyles} className="outer">
         
@@ -90,7 +90,13 @@ class SelectedWine extends Component {
                 <br/>
                 <p style={myStyles} className="wine_score">WE | {wine.score}</p>
                 <br/>
-                <div style={myStyles} className="btn_div"><Button onClick={this.onCartClick} className="add_to_cart_btn" variant="dark" size="lg" active>Add to Cart</Button></div>
+                  <div style={myStyles} className="btn_div">
+                    { this.props.cart.includes(this.props.wine) ?
+                    <Button disabled style={{ pointerEvents: 'none' }} className="add_to_cart_btn" variant="dark" size="lg" active>Add to Cart</Button>
+                    :
+                    <Button onClick={this.onCartClick} className="add_to_cart_btn" variant="dark" size="lg" active>Add to Cart</Button>
+                    } 
+                  </div>
                 <br/> 
                 <Table style={myStyles} striped hover>
                   <tbody>
