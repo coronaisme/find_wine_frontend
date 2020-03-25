@@ -40,6 +40,7 @@ export function setSearchWine(input) {
 }
 
 export function setCart(wine) {
+  // console.log(wine)
   return function(dispatch) {
     dispatch({
       type: SET_CART,

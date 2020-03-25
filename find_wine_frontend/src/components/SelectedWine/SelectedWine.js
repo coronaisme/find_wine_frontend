@@ -62,7 +62,7 @@ class SelectedWine extends Component {
     })
   }
 
-  onCartClick = (wine) => {
+  onCartClick = () => {
     this.props.setCart(this.props.wine)
   }
 

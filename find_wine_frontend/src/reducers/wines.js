@@ -27,10 +27,16 @@ export default function wines(state = initialState, action) {
         searchInput: action.payload
       }
     case SET_CART:
+      let testCart = [...state.cart, action.payload]
+      localStorage.setItem('testCart', JSON.stringify(testCart));
+      let retrievedTestCart = localStorage.getItem('testCart');
+      console.log('retrievedTestCart', JSON.parse(retrievedTestCart));
+      // console.log(action.payload, "payload")
+      // console.log(state, "state")
       return {
         ...state,
         cart: [...state.cart, action.payload]
       }
-    default: return state
+      default: return state
   }
 }

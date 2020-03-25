@@ -3,6 +3,7 @@ import { Nav, NavDropdown, Form, FormControl, Navbar, Container } from 'react-bo
 import './TopBar.css';
 import { setSearchWine } from '../../actions/wines'
 import { connect } from 'react-redux'
+// import { Link } from 'react-router-dom'
 
 const myStyles = {
   fontFamily: 'Montserrat'
