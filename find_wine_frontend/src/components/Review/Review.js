@@ -19,7 +19,7 @@ export default class Review extends Component {
           <Col md={2} className="user-col">
           <Card.Body width="100" className="user-card">
             <Card.Img className="card-image" src={`${user.avatar_url}`} height="100" width="100"/>
-            <Card.Title style={myStyles} className="wine_review_title">{user.name}</Card.Title>
+            <Card.Title style={myStyles} className="wine_review_title">{user.name.toUpperCase()}</Card.Title>
           </Card.Body>
           </Col>
           <Col>

@@ -3,18 +3,17 @@ import { Container, Row, Col, Image, Button, Table, Form } from 'react-bootstrap
 import Review from '../Review/Review.js'
 import './SelectedWine.css'
 
-
 const myStyles = {
   fontFamily: 'Montserrat'
 }
-
 
 
 export default class SelectedWine extends Component {
 
   state = {
     reviews:[],
-    reviewContent: ""
+    reviewContent: "",
+    cart: []
   }
 
 
@@ -23,18 +22,12 @@ export default class SelectedWine extends Component {
    .then(data => 
     this.setState({
      reviews:this.getSelectedWinesReviews(data.reviews)
-     
-   }, () => console.log(data)));
+   }))
   }
-
 
   getSelectedWinesReviews = (reviews) => {
     return reviews.filter(review => review.review.wine_id === this.props.wine.id )
   }
-
-
-
-
 
   handleChange =(e) => {
     this.setState({
@@ -53,6 +46,7 @@ export default class SelectedWine extends Component {
       headers: {'Content-Type': 'application/json',Accept: 'application/json',Authorization: ""},
       body: JSON.stringify(data)
     }).then(res => res.json()).then(data => {
+      // debugger
       this.setState({
         reviews: [...this.state.reviews, data]
       })
@@ -64,15 +58,12 @@ export default class SelectedWine extends Component {
         })
       }
     })
-
   }
-  
-  
 
   render() {
 
     const { wine, current_user } = this.props
-    // console.log(wine)
+    
     
 
     return (
@@ -121,8 +112,9 @@ export default class SelectedWine extends Component {
                 </Table>
           </Col>
         </Row>
-          <Row className="reviews_row"> 
-            {this.state.reviews.map(review => <Review key={review.review.id} review={review}/>)}
+          <Row className="reviews_row">   
+            {
+            this.state.reviews.map(review => <Review key={review.review.id} review={review}/>)}   
           </Row>
        </Container>
           <br/>

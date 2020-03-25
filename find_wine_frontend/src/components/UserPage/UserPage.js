@@ -33,7 +33,7 @@ export default class UserPage extends Component {
           <Col><img className="image" alt="avatar" src={user_details.avatar_url}></img></Col>
           <Col>
           
-        <h1 style={myStyles} ><Badge>{user_details.name}</Badge></h1><br/>
+        <h1 style={myStyles} ><Badge>{user_details.name.toUpperCase()}</Badge></h1><br/>
           <Table style={myStyles} striped hover>
                   <tbody>
                     <tr>
@@ -62,10 +62,11 @@ export default class UserPage extends Component {
         </Row>
         <Row>
         <Col style={myStyles} >
-        {user_details.name}'s Orders: 
+        {user_details.name.toUpperCase()} ORDERS 
         <br/>
         {this.props.current_user.orders.map(order => <ul key={order.id}>{order.created_at.toString().split("T")[0]} : {order.status}, shipped to : {order.shipped_to}</ul>)}</Col>
-        <Col style={myStyles} >{this.props.current_user.reviews.map(review => <ul key={review.id}>{review.created_at.toString().split("T")[0]} : {review.content}</ul>)}</Col>
+
+        <Col style={myStyles} > {user_details.name.toUpperCase()} PAST REVIEWS <br/>{this.props.current_user.reviews.map(review => <ul key={review.id}>{review.created_at.toString().split("T")[0]} : {review.content}</ul>)}</Col>
         </Row>
       </Container>
         }

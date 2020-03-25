@@ -29,7 +29,7 @@ class TopBar extends Component {
    if (this.props.current_user.user_details) {
      return  (
        <>
-       <Nav.Link className="profile" href="/users/1">HEY, {this.props.current_user.user_details.name}</Nav.Link>
+       <Nav.Link className="profile" href="/users/1">HEY, {this.props.current_user.user_details.name.toUpperCase()}</Nav.Link>
        <Nav.Link className="logoutclick" onClick={this.props.handleLogout} href="/wines">LOGOUT</Nav.Link>
        <Nav.Link className="cart" href="#link">CART</Nav.Link>
        </>
