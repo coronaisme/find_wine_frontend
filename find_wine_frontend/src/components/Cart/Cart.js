@@ -1,32 +1,42 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { setCart, getCart } from '../../actions/wines'
+import { setCart, getCart, addToQuantity } from '../../actions/wines'
 import './Cart.css';
-import { Container, Col, Row, Table, Image, Button } from 'react-bootstrap'
+import { Container, Row, Table, Image, Button } from 'react-bootstrap'
 
 const myStyles = {
   fontFamily: 'Montserrat'
 }
 
+
 class Cart extends Component {
+  
+  // state = {
+  //   subtotal:0,
+  // }
+
 
   componentDidMount() {
     this.props.getCart()
   }
 
+  
   makeCart = () => {
     const { cart } = this.props
-    let total;
     let count = 1;
+    
+    
     return cart.map(wine => 
       <tbody key={wine.id}>
         <tr>
           <td>{<Image alt="wine_img" className="wine_thumb" src={`${wine.img_url}`}></Image>}</td>
-          <td>$ {wine.price}.00</td>
-          <td className="quantity-shit"><i style={{cursor:'pointer'}} className="minus small icon hover"></i> {count} <i style={{cursor:'pointer'}} className="plus small icon hover"></i></td>
-          <td>{total}</td>
+          <td>{wine.title}, <br/> {wine.varietal}</td>
+          <td name="price">$ {wine.price}.00</td>
+          <td className="quantity-shit"><i style={{cursor:'pointer'}} onClick={() => this.handleMinusClick(wine)} className="minus small icon hover"></i> {wine.quantity} <i style={{cursor:'pointer'}} onClick={() => this.handlePlusClick(wine)} className="plus small icon hover"></i></td>
+          <td> $ {wine.quantity * wine.price}.00</td>
         </tr>
         <tr>
+          <th></th>
           <th></th>
           <th></th>
           <th></th>
@@ -34,13 +44,30 @@ class Cart extends Component {
         </tr>
       </tbody>
       )
-  }
+    }
+
+    handleMinusClick = (wine) => {
+      --wine.quantity
+      this.props.addToQuantity(wine)
+    }
+    
+    handlePlusClick = (wine) => {
+      // console.log(wine)
+      ++wine.quantity
+      this.props.addToQuantity(wine)
+    }
+
+    handleSubtotal = () => {
+      let arr = this.props.cart.map(wine => wine.quantity * wine.price)
+      let newArr = arr.reduce((a,b) => a + b, 0)
+      return newArr
+    }
 
 
   render() {
     // console.log(this.props, "in cart")
     const { cart } = this.props
-    let subtotal;
+    console.log(this.props.cart)
 
 
     return (
@@ -54,6 +81,7 @@ class Cart extends Component {
               <thead>
                 <tr>
                   <th className="big-space"></th>
+                  <th></th>
                   <th>PRICE</th>
                   <th>QUANTITY</th>
                   <th>TOTAL</th>
@@ -72,7 +100,8 @@ class Cart extends Component {
                   identification as proof.</td>
                 <td></td>
                 <td></td>
-                <td>SUBTOTAL {subtotal} <br/><br/><br/>
+                <td></td>
+                <td>SUBTOTAL | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $ {this.props.cart && this.handleSubtotal()}.00 <br/><br/><br/>
 
                 <Button variant="dark" >Checkout</Button>
 
@@ -104,6 +133,9 @@ const mapDispatchToProps = (dispatch) => {
     }, 
     getCart: () => {
       return dispatch(getCart())
+    }, 
+    addToQuantity: (wine) => {
+      return dispatch(addToQuantity(wine))
     }
   }
 }

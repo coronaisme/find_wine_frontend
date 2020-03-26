@@ -30,11 +30,10 @@ class UserPage extends Component {
 
   //ask amelie or emiley about this ish
   handleReviewClick = (e) => {
-    e.persist()
-  return e.target.name ?
+  e.persist()
+  return e.target ?
   console.log(e.target.name)
-  : console.log('fucked')
-   
+  : console.log('fucked')  
   }
 
   render() {

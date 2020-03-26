@@ -68,7 +68,8 @@ class SelectedWine extends Component {
   }
 
   checkWine = () => {
-    return this.props.cart.includes(this.props.wine) ?
+    
+    return this.props.cart.some(wine => wine.id === this.props.wine.id) ?
     <Button disabled style={{ pointerEvents: 'none' }} className="add_to_cart_btn" variant="dark" size="lg" active>Add to Cart</Button>
     :
     <Button onClick={this.onCartClick} className="add_to_cart_btn" variant="dark" size="lg" active>Add to Cart</Button>

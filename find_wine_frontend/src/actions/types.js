@@ -6,3 +6,4 @@ export const SET_CURRENT_WINE = 'SET_CURRENT_WINE'//one wine
 export const SET_SEARCH_WINES = "SET_SEARCH_WINES" //search bar
 export const SET_CART = "SET_CART" // set cart
 export const GET_CART = "GET_CART" // get cart 
+export const ADD_TO_QUANTITY = "ADD_TO_QUANTITY" //change quantity of cart
