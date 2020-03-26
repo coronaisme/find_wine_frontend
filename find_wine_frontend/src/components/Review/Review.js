@@ -15,7 +15,7 @@ export default class Review extends Component {
     return (
       <div className="reviewContainer">
         <Row className="card-row">
-        <Card className="review-card-container">
+        <Card className="review-container">
           <Col md={2} className="user-col">
           <Card.Body width="100" className="user-card">
             <Card.Img className="card-image" src={`${user.avatar_url}`} height="100" width="100"/>
@@ -23,7 +23,7 @@ export default class Review extends Component {
           </Card.Body>
           </Col>
           <Col>
-            <Card.Body className="review-card">
+            <Card.Body className="review-cizard">
                 <Card.Text style={myStyles} className="review_text">
                  {review.content}
                 </Card.Text>

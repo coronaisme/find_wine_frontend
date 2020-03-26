@@ -20,38 +20,22 @@ class LandingPage extends Component {
   }
 
   filterWinesBySearch = (wines) => {
-    return wines.filter(wine => wine.title.startsWith(this.props.searchInput) || wine.varietal.startsWith(this.props.searchInput) || wine.region.startsWith(this.props.searchInput) )
+    return wines.filter(wine => wine.title.includes(this.props.searchInput) || wine.varietal.startsWith(this.props.searchInput) || wine.region.includes(this.props.searchInput) )
   }
   
-  
-  
-
-  render() {
+  showingWines = () => {
     const { wines, currentWine, current_user } = this.props
     const varietal = this.props.location.pathname.split("/")[2]
     const country = this.props.location.pathname.split("/")[3]
    
-
+  
     const filteredWinesByVarietal = wines.filter(wine => wine.varietal === varietal)
     const filteredVarietalByOther = wines.filter(wine => wine.varietal !== "Zinfandel" && wine.varietal !== "Cabernet Sauvignon" && wine.varietal !== "Merlot" && wine.varietal !== "Chardonnay" && wine.varietal !== "Sauvignon Blanc")
     const filteredWinesByCountry = wines.filter(wine => wine.country === country)
     const filteredCountryByOther = wines.filter(wine => wine.country !== "France" && wine.country !== "Italy" && wine.country !== "USA")
-    
 
 
-
-
-   
-
-    return (
-      
-      <div className="LandingPage">
-        
-        
-        <br/>
-        <br/>
-        <br/>
-          { currentWine  ? <SelectedWine current_user={current_user} wine={currentWine} /> 
+    return currentWine  ? <SelectedWine current_user={current_user} wine={currentWine} /> 
               :
         <Card.Group centered itemsPerRow={4}>
             {
@@ -70,7 +54,17 @@ class LandingPage extends Component {
             this.filterWinesBySearch(wines).map(wine => <RenderWine key={wine.id} wine={wine} onWineClick={this.onWineClick} />)
             }
         </Card.Group> 
-        }
+  }
+  
+  
+
+  render() {   
+    return (     
+      <div className="LandingPage"> 
+        <br/>
+        <br/>
+        <br/>
+        {this.showingWines()}
       </div>
     )
   }

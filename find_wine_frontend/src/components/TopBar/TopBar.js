@@ -3,7 +3,8 @@ import { Nav, NavDropdown, Form, FormControl, Navbar, Container } from 'react-bo
 import './TopBar.css';
 import { setSearchWine } from '../../actions/wines'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+
+
 
 const myStyles = {
   fontFamily: 'Montserrat'
@@ -32,7 +33,7 @@ class TopBar extends Component {
        <>
        <Nav.Link className="profile" href="/users/1">HEY, {this.props.current_user.user_details.name.toUpperCase()}</Nav.Link>
        <Nav.Link className="logoutclick" onClick={this.props.handleLogout} href="/wines">LOGOUT</Nav.Link>
-       <Nav.Link className="cart" href="#link">CART</Nav.Link>
+       {/* <Nav.Link className="cart" style={myStyles} href="/cart"><i className="shopping bag large icon"></i>{this.props.cart.length}</Nav.Link> */}
        </>
      )
 
@@ -42,9 +43,15 @@ class TopBar extends Component {
       }
   }
 
+  checkCart = () => {
+   return window.location.pathname === '/cart' ?  null : <Nav.Link className="cart" style={myStyles} href="/cart"><i className="shopping bag large icon"></i>{this.props.cart.length}</Nav.Link> 
+  }
+
+  
   render() {
-   
     
+console.log(window.location.pathname, "topbar")
+
     return (
       <Navbar style={myStyles} bg="light" expand="lg">
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -77,6 +84,7 @@ class TopBar extends Component {
               <FormControl name="searchInput" onChange={this.handleChange} value={this.state.input} type="text" placeholder="Search" className="mr-sm-2" />
             </Form>
             {this.checkCurrentUser()}
+            {this.checkCart()}
           </Nav>
         </Navbar.Collapse>
       </Navbar>
@@ -87,7 +95,8 @@ class TopBar extends Component {
 
   const mapStateToProps = (state) => {
     return {
-      searchInput:state.searchInput
+      searchInput:state.searchInput,
+      cart:state.cart
     }
   }
   

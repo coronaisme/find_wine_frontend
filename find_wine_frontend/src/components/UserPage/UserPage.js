@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Table, Badge } from 'react-bootstrap'
+import { connect } from 'react-redux'
+import { setCart, getCart } from '../../actions/wines'
+import { Container, Row, Col, Table, Badge, Card } from 'react-bootstrap'
 import './UserPage.css'
+
 
 const myStyles = {
   fontFamily: 'Montserrat'
 }
 
-export default class UserPage extends Component {
+class UserPage extends Component {
+
+  componentDidMount() {
+    this.props.getCart()
+  }
   
   
   getAge = (dateString) => {
@@ -21,10 +28,19 @@ export default class UserPage extends Component {
   }
  
 
+  //ask amelie or emiley about this ish
+  handleReviewClick = (e) => {
+    e.persist()
+  return e.target.name ?
+  console.log(e.target.name)
+  : console.log('fucked')
+   
+  }
+
   render() {
 
     const { user_details } = this.props.current_user
-    console.log(user_details)
+  
     return (
       <div>
         {user_details &&
@@ -66,7 +82,12 @@ export default class UserPage extends Component {
         <br/>
         {this.props.current_user.orders.map(order => <ul key={order.id}>{order.created_at.toString().split("T")[0]} : {order.status}, shipped to : {order.shipped_to}</ul>)}</Col>
 
-        <Col style={myStyles} > {user_details.name.toUpperCase()} PAST REVIEWS <br/>{this.props.current_user.reviews.map(review => <ul key={review.id}>{review.created_at.toString().split("T")[0]} : {review.content}</ul>)}</Col>
+        <Col style={myStyles} > {user_details.name.toUpperCase()} PAST REVIEWS <br/>
+
+            {this.props.current_user.reviews.map(review => <ul name={review.wine_id} key={review.id}><Card.Text name={review.wine_id} onClick={this.handleReviewClick} key={review.id} className="review-card" style={{cursor:'pointer'}}>  {review.created_at.toString().split("T")[0]} : {review.content}</Card.Text></ul>)}
+       
+        </Col>
+
         </Row>
       </Container>
         }
@@ -75,3 +96,27 @@ export default class UserPage extends Component {
     )
   }
 }
+
+//state in redux
+const mapStateToProps = (state) => {
+  return {
+    wines:state.wines,
+    currentWine:state.currentWine,
+    searchInput:state.searchInput,
+    cart:state.cart
+  }
+}
+
+// give ability to update store with action
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setCart: (wine) => {
+      return dispatch(setCart(wine))
+    }, 
+    getCart: () => {
+      return dispatch(getCart())
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserPage)

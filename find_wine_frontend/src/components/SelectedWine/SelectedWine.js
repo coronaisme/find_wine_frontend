@@ -15,13 +15,11 @@ class SelectedWine extends Component {
   state = {
     reviews:[],
     reviewContent: "",
-    cart: []
   }
 
 
   componentDidMount() {
-    
-    this.props.getCart()
+   this.props.getCart()
 
    return fetch('http://localhost:3000/api/v1/reviews').then(res => res.json())
    .then(data => 
@@ -66,7 +64,14 @@ class SelectedWine extends Component {
   }
 
   onCartClick = () => {
-    this.props.setCart(this.props.wine)
+    localStorage.token ? this.props.setCart(this.props.wine) : alert("Must be signed-in to add to cart!")
+  }
+
+  checkWine = () => {
+    return this.props.cart.includes(this.props.wine) ?
+    <Button disabled style={{ pointerEvents: 'none' }} className="add_to_cart_btn" variant="dark" size="lg" active>Add to Cart</Button>
+    :
+    <Button onClick={this.onCartClick} className="add_to_cart_btn" variant="dark" size="lg" active>Add to Cart</Button>
   }
 
 
@@ -74,7 +79,8 @@ class SelectedWine extends Component {
 
     const { wine, current_user } = this.props
     
-    
+    console.log(this.props.cart, "cart")
+    console.log(this.props.wine, "wine")
     return (
       <div style={myStyles} className="outer">
         
@@ -94,11 +100,10 @@ class SelectedWine extends Component {
                 <p style={myStyles} className="wine_score">WE | {wine.score}</p>
                 <br/>
                   <div style={myStyles} className="btn_div">
-                    { this.props.cart.includes(this.props.wine) ?
-                    <Button disabled style={{ pointerEvents: 'none' }} className="add_to_cart_btn" variant="dark" size="lg" active>Add to Cart</Button>
-                    :
-                    <Button onClick={this.onCartClick} className="add_to_cart_btn" variant="dark" size="lg" active>Add to Cart</Button>
-                    } 
+                    {console.log(this.props.wine)}
+                    { 
+                    this.props.wine &&
+                      this.checkWine() } 
                   </div>
                 <br/> 
                 <Table style={myStyles} striped hover>

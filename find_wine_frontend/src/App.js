@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import './App.css';
 import LandingPage from './components/LandingPage/LandingPage.js';
 // import SelectedWine from './components/SelectedWine/SelectedWine.js'
@@ -12,7 +13,7 @@ import api from './api/api.js';
 
 
 
-export default class App extends Component {
+class App extends Component {
 
 
   state = { 
@@ -22,7 +23,7 @@ export default class App extends Component {
   };
 
   componentDidMount() {
-    
+
 
     const token = localStorage.getItem('token');
 
@@ -57,7 +58,7 @@ export default class App extends Component {
   };
 
   render(){
-    
+   
   
     return (
       <div className="App">
@@ -88,3 +89,14 @@ export default class App extends Component {
   }
 
 }
+
+const mapStateToProps = (state) => {
+  return {
+    searchInput:state.searchInput,
+    cart:state.cart
+  }
+}
+
+
+
+export default connect(mapStateToProps)(App)

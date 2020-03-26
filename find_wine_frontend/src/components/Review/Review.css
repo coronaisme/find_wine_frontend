@@ -2,7 +2,7 @@
 text-align: left;
 }
 
-.review-card-container{
+.review-container{
   flex-direction: row !important;
 }
 .card-image{
