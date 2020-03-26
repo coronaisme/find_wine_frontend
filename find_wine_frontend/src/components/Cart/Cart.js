@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { setCart, getCart } from '../../actions/wines'
 import './Cart.css';
-import { Container, Col, Row, Table, Image } from 'react-bootstrap'
+import { Container, Col, Row, Table, Image, Button } from 'react-bootstrap'
 
 const myStyles = {
   fontFamily: 'Montserrat'
@@ -14,12 +14,33 @@ class Cart extends Component {
     this.props.getCart()
   }
 
+  makeCart = () => {
+    const { cart } = this.props
+    let total;
+    let count = 1;
+    return cart.map(wine => 
+      <tbody key={wine.id}>
+        <tr>
+          <td>{<Image alt="wine_img" className="wine_thumb" src={`${wine.img_url}`}></Image>}</td>
+          <td>$ {wine.price}.00</td>
+          <td className="quantity-shit"><i style={{cursor:'pointer'}} className="minus small icon hover"></i> {count} <i style={{cursor:'pointer'}} className="plus small icon hover"></i></td>
+          <td>{total}</td>
+        </tr>
+        <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </tbody>
+      )
+  }
+
 
   render() {
     // console.log(this.props, "in cart")
     const { cart } = this.props
-    let count = 1;
-    let total;
+    let subtotal;
 
 
     return (
@@ -38,27 +59,27 @@ class Cart extends Component {
                   <th>TOTAL</th>
                 </tr>
               </thead>
-              { cart && cart.map(wine => 
-                <tbody key={wine.id}>
-                  <tr>
-                    <td>{<Image alt="wine_img" className="wine_thumb" src={`${wine.img_url}`}></Image>}</td>
-                    <td>$ {wine.price}.00</td>
-                    <td className="quantity-shit"><i className="minus small icon hover"></i> {count} <i className="plus small icon hover"></i></td>
-                    <td>{total}</td>
-                  </tr>
-                  <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                  </tr>
-                </tbody>
-                )}
+              { cart && this.makeCart()}
             </Table>
-
           </Row>
           <Row>
-            <Col>1 of 3</Col>
+            <Table>
+              <tbody>
+              <tr className="bottomtable" style={myStyles}>
+                <td className="adult-sig">ADULT SIGNATURE IS REQUIRED Upon delivery. <br/>
+                  The recipient must be over the age of 21 and <br/>
+                  they will be inquired to present appropriate <br/>
+                  identification as proof.</td>
+                <td></td>
+                <td></td>
+                <td>SUBTOTAL {subtotal} <br/><br/><br/>
+
+                <Button variant="dark" >Checkout</Button>
+
+                </td>
+              </tr>
+              </tbody>
+            </Table>
           </Row>
         </Container>
       </>

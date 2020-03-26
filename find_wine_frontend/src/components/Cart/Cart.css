@@ -12,9 +12,21 @@
 .quantity-shit{
   justify-content: space-between;
 }
-i.icon.plus:before{
+i.icon.plus:hover{
+  color:gray;
+}
+i.icon.minus:hover{
+  color:gray;
+}
+i.icon.minus{
+  padding-right: 5px;
+}
+i.icon.plus{
   padding-left: 5px;
 }
-i.icon.minus:before{
-  padding-right: 5px;
+.bottomtable{
+  justify-content: space-between;
+}
+.adult-sig{
+  text-align: left;
 }
