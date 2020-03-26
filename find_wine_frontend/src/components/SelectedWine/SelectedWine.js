@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { setCart } from '../../actions/wines'
+import { setCart, getCart } from '../../actions/wines'
 import { Container, Row, Col, Image, Button, Table, Form } from 'react-bootstrap'
 import Review from '../Review/Review.js'
 import './SelectedWine.css'
@@ -20,6 +20,9 @@ class SelectedWine extends Component {
 
 
   componentDidMount() {
+    
+    this.props.getCart()
+
    return fetch('http://localhost:3000/api/v1/reviews').then(res => res.json())
    .then(data => 
     this.setState({
@@ -162,6 +165,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setCart: (wine) => {
       return dispatch(setCart(wine))
+    }, 
+    getCart: () => {
+      return dispatch(getCart())
     }
   }
 }

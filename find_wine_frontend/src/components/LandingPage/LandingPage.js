@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { setAllWines, setCurrentWine } from '../../actions/wines'
+import { setAllWines, setCurrentWine, getCart } from '../../actions/wines'
 import { Card } from 'semantic-ui-react'
 import RenderWine from '../RenderWine/RenderWine';
 import SelectedWine from '../SelectedWine/SelectedWine';
@@ -11,6 +11,7 @@ class LandingPage extends Component {
 
   componentDidMount() {
     this.props.setAllWines()
+    this.props.getCart()
   }
 
   onWineClick = (wine) => {
@@ -80,7 +81,8 @@ const mapStateToProps = (state) => {
   return {
     wines:state.wines,
     currentWine:state.currentWine,
-    searchInput:state.searchInput
+    searchInput:state.searchInput,
+    cart:state.cart
   }
 }
 
@@ -92,6 +94,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     setAllWines: () => {
       return dispatch(setAllWines())
+    },
+    getCart: () => {
+      return dispatch(getCart())
     }
   }
 }

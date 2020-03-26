@@ -22,6 +22,8 @@ export default class App extends Component {
   };
 
   componentDidMount() {
+    
+
     const token = localStorage.getItem('token');
 
     if (token) {
