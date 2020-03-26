@@ -50,7 +50,7 @@ class UserPage extends Component {
           <Col>
           
         <h1 style={myStyles} ><Badge>{user_details.name.toUpperCase()}</Badge></h1><br/>
-          <Table style={myStyles} striped hover>
+          <Table style={myStyles} striped>
                   <tbody>
                     <tr>
                       <td>Age</td>

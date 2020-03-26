@@ -79,8 +79,7 @@ class SelectedWine extends Component {
 
     const { wine, current_user } = this.props
     
-    console.log(this.props.cart, "cart")
-    console.log(this.props.wine, "wine")
+   
     return (
       <div style={myStyles} className="outer">
         
@@ -100,13 +99,13 @@ class SelectedWine extends Component {
                 <p style={myStyles} className="wine_score">WE | {wine.score}</p>
                 <br/>
                   <div style={myStyles} className="btn_div">
-                    {console.log(this.props.wine)}
+                    {/* {console.log(this.props.wine)} */}
                     { 
                     this.props.wine &&
                       this.checkWine() } 
                   </div>
                 <br/> 
-                <Table style={myStyles} striped hover>
+                <Table style={myStyles} striped>
                   <tbody>
                     <tr>
                       <td>Brand</td>

@@ -5,3 +5,16 @@
   font-size: 30px;
   font-weight: bolder;
 }
+.wine_thumb{
+  width:200px;
+  height: 200px;
+}
+.quantity-shit{
+  justify-content: space-between;
+}
+i.icon.plus:before{
+  padding-left: 5px;
+}
+i.icon.minus:before{
+  padding-right: 5px;
+}

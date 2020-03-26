@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { setCart, getCart } from '../../actions/wines'
 import './Cart.css';
-import { Container, Col, Row } from 'react-bootstrap'
+import { Container, Col, Row, Table, Image } from 'react-bootstrap'
 
 const myStyles = {
   fontFamily: 'Montserrat'
@@ -16,15 +16,46 @@ class Cart extends Component {
 
 
   render() {
-    console.log(window.location, "location?")
+    // console.log(this.props, "in cart")
+    const { cart } = this.props
+    let count = 1;
+    let total;
+
+
     return (
       <>
-      <Container></Container>
-      <Container style={myStyles}></Container>
-      <Container className="cart-title" style={myStyles}>CART</Container>
-       <Container>
+        <Container></Container>
+        <Container style={myStyles}></Container>
+        <Container className="cart-title" style={myStyles}>CART</Container>
+        <Container>
           <Row>
-            <Col>1 of 3</Col>
+            <Table style={myStyles}>
+              <thead>
+                <tr>
+                  <th className="big-space"></th>
+                  <th>PRICE</th>
+                  <th>QUANTITY</th>
+                  <th>TOTAL</th>
+                </tr>
+              </thead>
+              { cart && cart.map(wine => 
+                <tbody key={wine.id}>
+                  <tr>
+                    <td>{<Image alt="wine_img" className="wine_thumb" src={`${wine.img_url}`}></Image>}</td>
+                    <td>$ {wine.price}.00</td>
+                    <td className="quantity-shit"><i className="minus small icon hover"></i> {count} <i className="plus small icon hover"></i></td>
+                    <td>{total}</td>
+                  </tr>
+                  <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </tbody>
+                )}
+            </Table>
+
           </Row>
           <Row>
             <Col>1 of 3</Col>

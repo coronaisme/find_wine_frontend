@@ -50,7 +50,7 @@ class TopBar extends Component {
   
   render() {
     
-console.log(window.location.pathname, "topbar")
+
 
     return (
       <Navbar style={myStyles} bg="light" expand="lg">
