@@ -28,18 +28,19 @@ class UserPage extends Component {
   }
  
 
-  //ask amelie or emiley about this ish
+  //think about this after posting an order, check to see if you can connect a review to a specific wine because you have wine_id
+
   handleReviewClick = (e) => {
   e.persist()
-  return e.target ?
-  console.log(e.target.name)
-  : console.log('fucked')  
+ 
+  this.props.history.push(`/wines/${e.target.dataset.id}`)
+ 
   }
 
   render() {
 
     const { user_details } = this.props.current_user
-  
+    
     return (
       <div>
         {user_details &&
@@ -79,11 +80,12 @@ class UserPage extends Component {
         <Col style={myStyles} >
         {user_details.name.toUpperCase()} ORDERS 
         <br/>
-        {this.props.current_user.orders.map(order => <ul key={order.id}>{order.created_at.toString().split("T")[0]} : {order.status}, shipped to : {order.shipped_to}</ul>)}</Col>
+          
+        {this.props.current_user.orders.map(order => <ul key={order.id}>{order.created_at.toString().split("T")[0]} : {order.status}, shipped to : {order.shipped_to}, total: {order.total}</ul>)}</Col>
 
         <Col style={myStyles} > {user_details.name.toUpperCase()} PAST REVIEWS <br/>
 
-            {this.props.current_user.reviews.map(review => <ul name={review.wine_id} key={review.id}><Card.Text name={review.wine_id} onClick={this.handleReviewClick} key={review.id} className="review-card" style={{cursor:'pointer'}}>  {review.created_at.toString().split("T")[0]} : {review.content}</Card.Text></ul>)}
+            {this.props.current_user.reviews.map(review => <ul name={review.wine_id} key={review.id}><Card.Text data-id={review.wine_id} onClick={this.handleReviewClick} key={review.id} className="review-card" style={{cursor:'pointer'}}>  {review.created_at.toString().split("T")[0]} : {review.content}</Card.Text></ul>)}
        
         </Col>
 

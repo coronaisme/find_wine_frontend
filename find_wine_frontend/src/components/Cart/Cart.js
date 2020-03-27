@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { setCart, getCart, addToQuantity } from '../../actions/wines'
 import './Cart.css';
-import { Container, Row, Table, Image, Button } from 'react-bootstrap'
+import { Container, Row, Table, Image } from 'react-bootstrap'
+import StripeCheckout from 'react-stripe-checkout'
 
 const myStyles = {
   fontFamily: 'Montserrat'
@@ -18,12 +19,13 @@ class Cart extends Component {
 
   componentDidMount() {
     this.props.getCart()
+    console.log(this.props, "in cart mount")
   }
 
   
   makeCart = () => {
     const { cart } = this.props
-    let count = 1;
+   
     
     
     return cart.map(wine => 
@@ -63,11 +65,29 @@ class Cart extends Component {
       return newArr
     }
 
+    handleSubmit = () => {
+      // e.persist()
+      // e.preventDefault()
+      let body = { status:"Completed, Delivered on-time", user_id:this.props.current_user.user_details.id, shipped_to:this.props.current_user.user_details.address, total:this.handleSubtotal() }
+      debugger
+      console.log(body)
+      fetch('http://localhost:3000/api/v1/new_order', {
+        method: "POST",
+        headers: {'Content-Type': 'application/json',Accept: 'application/json',Authorization: ""},
+        body: JSON.stringify(body)
+      }).then(res => res.status === 200 ? res.json() : console.log("error")).then(data => console.log(data, "posted"))
+      localStorage.removeItem('testCart')
+      this.props.history.push('/wines')
+    }
+
+    handleToken = () => {
+      return Math.random()
+    }
 
   render() {
     // console.log(this.props, "in cart")
     const { cart } = this.props
-    console.log(this.props.cart)
+    
 
 
     return (
@@ -103,7 +123,17 @@ class Cart extends Component {
                 <td></td>
                 <td>SUBTOTAL | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $ {this.props.cart && this.handleSubtotal()}.00 <br/><br/><br/>
 
-                <Button variant="dark" >Checkout</Button>
+
+                <StripeCheckout
+                        color="black"
+                        stripeKey="pk_test_4TbuO6qAW2XPuce1Q6ywrGP200NrDZ2233"
+                        token={this.handleToken}
+                        amount={this.handleSubtotal() * 100}
+                        closed={this.handleSubmit}
+                        name="Total Items"
+                        billingAddress
+                        shippingAddress
+                    />
 
                 </td>
               </tr>

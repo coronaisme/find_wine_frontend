@@ -3,6 +3,7 @@ import { Nav, NavDropdown, Form, FormControl, Navbar, Container } from 'react-bo
 import './TopBar.css';
 import { setSearchWine } from '../../actions/wines'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 
 
@@ -44,13 +45,13 @@ class TopBar extends Component {
   }
 
   checkCart = () => {
-   return window.location.pathname === '/cart' ?  null : <Nav.Link className="cart" style={myStyles} href="/cart"><i className="shopping bag large icon"></i>{this.props.cart.length}</Nav.Link> 
+   return window.location.pathname === '/cart' ?  null : <Link to={`/cart`} className="cart" style={myStyles}><i className="shopping bag large icon"></i>{this.props.cart.length}</Link> 
   }
 
   
   render() {
     
-
+   
 
     return (
       <Navbar style={myStyles} bg="light" expand="lg">
