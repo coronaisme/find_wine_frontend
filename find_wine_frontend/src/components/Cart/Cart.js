@@ -121,8 +121,8 @@ class Cart extends Component {
                 <td></td>
                 <td></td>
                 <td></td>
+                { localStorage.getItem('token') ?
                 <td>SUBTOTAL | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $ {this.props.cart && this.handleSubtotal()}.00 <br/><br/><br/>
-
 
                 <StripeCheckout
                         color="black"
@@ -136,6 +136,9 @@ class Cart extends Component {
                     />
 
                 </td>
+                :
+                <td>Must be logged in to Checkout!</td>
+          }
               </tr>
               </tbody>
             </Table>
