@@ -81,7 +81,7 @@ class UserPage extends Component {
         {user_details.name.toUpperCase()} ORDERS 
         <br/>
           
-        {this.props.current_user.orders.map(order => <ul key={order.id}>{order.created_at.toString().split("T")[0]} : {order.status}, shipped to : {order.shipped_to}, total: {order.total}</ul>)}</Col>
+        {this.props.current_user.orders.map(order => <ul key={order.id}>{order.created_at.toString().split("T")[0]} : {order.status}, shipped to : {order.shipped_to}, total: ${order.total}.00 </ul>)}</Col>
 
         <Col style={myStyles} > {user_details.name.toUpperCase()} PAST REVIEWS <br/>
 

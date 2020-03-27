@@ -21,6 +21,13 @@
 .profile {
   color: rgba(0,0,0,.5);
 }
+.profile:hover{
+  background-color: transparent!important;
+}
+.logoutclick:hover{
+  background-color: transparent!important;
+
+}
 .first-drop{
   color: rgba(0,0,0,.5);
     display: block!important;
@@ -54,4 +61,11 @@ a:hover{
 #basic-navbar-nav{
 justify-content: space-between !important;
 
+}
+
+.title:hover{
+  background-color: transparent!important;
+}
+.title-drop:hover{
+  background-color: transparent!important;
 }

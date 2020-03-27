@@ -58,7 +58,7 @@ class TopBar extends Component {
         
         <Navbar.Collapse id="basic-navbar-nav">    
           <Nav >
-            <NavDropdown title="VARIETAL" id="basic-nav-dropdown">
+            <NavDropdown className="title-drop" title="VARIETAL" id="basic-nav-dropdown">
             <Link className="first-drop" to={`/wines/Cabernet Sauvignon`}> Cabernet Sauvignon</Link>
             <Link className="first-drop" to={`/wines/Zinfandel`}> Zinfandel</Link>
             <Link className="first-drop" to={`/wines/Merlot`}> Merlot</Link>
@@ -77,8 +77,8 @@ class TopBar extends Component {
             </NavDropdown>
           </Nav>
           <Nav>
-              <Link style={myStyles} className="title" to={`/wines`}>F I N D | W I N E</Link>
-              {/* <Navbar.Brand className="title" href="/wines">F I N D | W I N E</Navbar.Brand> */}
+              {/* <Link style={myStyles} className="title" to={`/wines`}>F I N D | W I N E</Link> */}
+              <Navbar.Brand className="title" href="/wines">F I N D | W I N E</Navbar.Brand>
           </Nav>
           <Nav>
             <Form inline>
