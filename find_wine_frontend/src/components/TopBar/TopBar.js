@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Nav, NavDropdown, Form, FormControl, Navbar, Container } from 'react-bootstrap'
 import './TopBar.css';
-import { setSearchWine } from '../../actions/wines'
+import { setSearchWine, setCurrentWine } from '../../actions/wines'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
@@ -48,6 +48,10 @@ class TopBar extends Component {
    return window.location.pathname === '/cart' ?  null : <Link to={`/cart`} className="cart" style={myStyles}><i className="shopping bag large icon"></i>{this.props.cart.length}</Link> 
   }
 
+  handleLinkClick = () => {
+    this.props.setCurrentWine(null)
+  }
+
   
   render() {
     
@@ -59,21 +63,21 @@ class TopBar extends Component {
         <Navbar.Collapse id="basic-navbar-nav">    
           <Nav >
             <NavDropdown className="title-drop" title="VARIETAL" id="basic-nav-dropdown">
-            <Link className="first-drop" to={`/wines/Cabernet Sauvignon`}> Cabernet Sauvignon</Link>
-            <Link className="first-drop" to={`/wines/Zinfandel`}> Zinfandel</Link>
-            <Link className="first-drop" to={`/wines/Merlot`}> Merlot</Link>
-            <Link className="first-drop" to={`/wines/Chardonnay`}> Chardonnay</Link>
-            <Link className="first-drop" to={`/wines/Sauvignon Blanc`}> Sauvignon Blanc</Link>
+            <Link className="first-drop" onClick={this.handleLinkClick} to={`/wines/Cabernet Sauvignon`}> Cabernet Sauvignon</Link>
+            <Link className="first-drop" onClick={this.handleLinkClick} to={`/wines/Zinfandel`}> Zinfandel</Link>
+            <Link className="first-drop" onClick={this.handleLinkClick} to={`/wines/Merlot`}> Merlot</Link>
+            <Link className="first-drop" onClick={this.handleLinkClick} to={`/wines/Chardonnay`}> Chardonnay</Link>
+            <Link className="first-drop" onClick={this.handleLinkClick} to={`/wines/Sauvignon Blanc`}> Sauvignon Blanc</Link>
               <NavDropdown.Divider />
-              <Link className="first-drop" to={`/wines/other`}> Other</Link>     
+              <Link className="first-drop" onClick={this.handleLinkClick} to={`/wines/other`}> Other</Link>     
             </NavDropdown>
             <Container></Container>
             <NavDropdown title="COUNTRY" id="basic-nav-dropdown">
-            <Link className="first-drop" to={`/wines/country/France`}>France</Link>
-            <Link className="first-drop" to={`/wines/country/Italy`}>Italy</Link>
-            <Link className="first-drop" to={`/wines/country/USA`}>USA</Link>
+            <Link className="first-drop" onClick={this.handleLinkClick} to={`/wines/country/France`}>France</Link>
+            <Link className="first-drop" onClick={this.handleLinkClick} to={`/wines/country/Italy`}>Italy</Link>
+            <Link className="first-drop" onClick={this.handleLinkClick} to={`/wines/country/USA`}>USA</Link>
               <NavDropdown.Divider />
-              <Link className="first-drop" to={`/wines/country/other`}>Other</Link>
+              <Link className="first-drop" onClick={this.handleLinkClick} to={`/wines/country/other`}>Other</Link>
             </NavDropdown>
           </Nav>
           <Nav>
@@ -97,7 +101,9 @@ class TopBar extends Component {
   const mapStateToProps = (state) => {
     return {
       searchInput:state.searchInput,
-      cart:state.cart
+      cart:state.cart,
+      wines:state.wines,
+      currentWine:state.currentWine
     }
   }
   
@@ -106,6 +112,9 @@ class TopBar extends Component {
     return {
       setSearchWine: (input) => {
         return dispatch(setSearchWine(input))
+      },
+      setCurrentWine: (wine) => {
+        return dispatch(setCurrentWine(wine))
       }
     }
   }

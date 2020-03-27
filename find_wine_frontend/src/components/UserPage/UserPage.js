@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { setCart, getCart } from '../../actions/wines'
+import { setCart, getCart, setAllWines, setCurrentWine } from '../../actions/wines'
 import { Container, Row, Col, Table, Badge, Card } from 'react-bootstrap'
 import './UserPage.css'
 
@@ -13,6 +13,7 @@ class UserPage extends Component {
 
   componentDidMount() {
     this.props.getCart()
+    this.props.setAllWines()
   }
   
   
@@ -32,9 +33,9 @@ class UserPage extends Component {
 
   handleReviewClick = (e) => {
   e.persist()
- 
+  let wine = this.props.wines.find(wine => wine.id === parseInt(e.target.dataset.id))
+  this.props.setCurrentWine(wine)
   this.props.history.push(`/wines/${e.target.dataset.id}`)
- 
   }
 
   render() {
@@ -116,6 +117,12 @@ const mapDispatchToProps = (dispatch) => {
     }, 
     getCart: () => {
       return dispatch(getCart())
+    },
+    setAllWines: () => {
+      return dispatch(setAllWines())
+    },
+    setCurrentWine: (wine) => {
+      return dispatch(setCurrentWine(wine))
     }
   }
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { setCart, getCart } from '../../actions/wines'
+import { setCart, getCart, setAllWines } from '../../actions/wines'
 import { Container, Row, Col, Image, Button, Table, Form } from 'react-bootstrap'
 import Review from '../Review/Review.js'
 import './SelectedWine.css'
@@ -15,11 +15,13 @@ class SelectedWine extends Component {
   state = {
     reviews:[],
     reviewContent: "",
+    thumbnail:false
   }
 
 
   componentDidMount() {
    this.props.getCart()
+   this.props.setAllWines()
 
    return fetch('http://localhost:3000/api/v1/reviews').then(res => res.json())
    .then(data => 
@@ -75,9 +77,18 @@ class SelectedWine extends Component {
     <Button onClick={this.onCartClick} className="add_to_cart_btn" variant="dark" size="lg" active>Add to Cart</Button>
   }
 
+  thumbnailClick = () => {
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        thumbnail: !prevState.thumbnail
+      }
+    })
+  }
+
 
   render() {
-
+    console.log(this.props)
     const { wine, current_user } = this.props
     
    
@@ -88,9 +99,21 @@ class SelectedWine extends Component {
         <Row className="row1">
 
           {/* I want to click on thumb to change the main img to the thumbimg and back and forth */}
-          <Col><Image alt="wine" fluid className="ui large image" src={`${wine.img_url}`}></Image>
-          <Image alt="thumb" className="thumbnail-img" src={`${wine.second_img_url}`} thumbnail />
+          
+          { !this.state.thumbnail ? 
+          <Col>
+          {/* main img */}
+          <Image alt="label" fluid className="ui large image" src={`${wine.img_url}`}></Image>
+          {/* thumb */}
+          <Image alt="bottle" style={{cursor: "pointer"}} onClick={this.thumbnailClick} className="thumbnail-img" src={`${wine.second_img_url}`} thumbnail />
           </Col>
+          :
+          <Col>
+          <Image alt="bottle" fluid className="ui small image" src={`${wine.second_img_url}`}></Image>
+          {/* thumb */}
+          <Image alt="label" style={{cursor: "pointer"}} onClick={this.thumbnailClick} className="thumbnail-img" src={`${wine.img_url}`} thumbnail />
+          </Col>
+          }
 
           {/* info on right */}
           <Col className="left_col">
@@ -177,6 +200,9 @@ const mapDispatchToProps = (dispatch) => {
     }, 
     getCart: () => {
       return dispatch(getCart())
+    },
+    setAllWines: () => {
+      return dispatch(setAllWines())
     }
   }
 }

@@ -51,8 +51,11 @@
 .thumbnail-img{
   height: 70px;
   width:60px;
-  /* size:171x180; */
+  margin-right: 15%;
 }
 .review-container:hover{
   background-color: transparent!important;
+}
+.ui.small.image{
+  margin-left: 29%;
 }
