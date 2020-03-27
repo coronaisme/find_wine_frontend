@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { setCart, getCart, addToQuantity } from '../../actions/wines'
+import { setCart, getCart, addToQuantity, setAllWines } from '../../actions/wines'
 import './Cart.css';
 import { Container, Row, Table, Image } from 'react-bootstrap'
 import StripeCheckout from 'react-stripe-checkout'
@@ -20,6 +20,7 @@ class Cart extends Component {
   componentDidMount() {
     this.props.getCart()
     console.log(this.props, "in cart mount")
+    // this.props.setAllWines()
   }
 
   
@@ -76,7 +77,7 @@ class Cart extends Component {
         body: JSON.stringify(body)
       }).then(res => res.status === 200 ? res.json() : console.log("error")).then(data => console.log(data, "posted"))
       localStorage.removeItem('testCart')
-      this.props.history.push('/wines')
+      this.props.history.push('/')
     }
 
     handleToken = () => {
@@ -165,6 +166,9 @@ const mapDispatchToProps = (dispatch) => {
     }, 
     addToQuantity: (wine) => {
       return dispatch(addToQuantity(wine))
+    }, 
+    setAllWines: () => {
+      return dispatch(setAllWines())
     }
   }
 }

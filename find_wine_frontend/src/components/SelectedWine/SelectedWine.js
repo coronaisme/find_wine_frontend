@@ -4,6 +4,7 @@ import { setCart, getCart, setAllWines } from '../../actions/wines'
 import { Container, Row, Col, Image, Button, Table, Form } from 'react-bootstrap'
 import Review from '../Review/Review.js'
 import './SelectedWine.css'
+import { Redirect } from 'react-router-dom'
 
 const myStyles = {
   fontFamily: 'Montserrat'
@@ -15,7 +16,8 @@ class SelectedWine extends Component {
   state = {
     reviews:[],
     reviewContent: "",
-    thumbnail:false
+    thumbnail:false,
+    reviewed:false
   }
 
 
@@ -40,6 +42,15 @@ class SelectedWine extends Component {
     })
   }
 
+  onReviewEnter = () => {
+   this.setState(prevState => {
+     return {
+       ...prevState,
+       reviewed: !prevState.reviewed
+     }
+   })
+  }
+
   handleSubmit = (e) => {
     e.preventDefault()
     e.persist()
@@ -58,9 +69,10 @@ class SelectedWine extends Component {
       // console.log(data)
       if(data.error) {
         alert(`${data.error}`)
+      } else {
         this.setState({
           reviewContent: ""
-        })
+        }) 
       }
     })
   }
@@ -88,8 +100,9 @@ class SelectedWine extends Component {
 
 
   render() {
-    console.log(this.props)
+    
     const { wine, current_user } = this.props
+  
     
    
     return (
@@ -161,20 +174,26 @@ class SelectedWine extends Component {
         </Row>
           <Row className="reviews_row">   
             {
-            this.state.reviews.map(review => <Review key={review.review.id} review={review}/>)}   
+             this.state.reviews.map(review => <Review key={review.review.id} review={review}/>)}
+            
           </Row>
        </Container>
           <br/>
-          {/* reviews */}
-          {current_user.user_details &&
+
+          {( current_user.user_details && !this.props.current_user.reviews.some(rev => rev.wine_id === this.props.wine.id) ) 
+          ?
         <Form onSubmit={this.handleSubmit}>
           <Form.Group style={myStyles} className="reviewTextArea" controlId="reviewTextArea">
               <Form.Label>Write a Review!</Form.Label>
               <Form.Control onChange={this.handleChange} value={this.state.reviewContent} name="review" as="textarea" rows="5" />
           </Form.Group>
           <br/>
-            <Button type="submit" variant="dark">Enter Review</Button>
+            
+            <Button type="submit" onClick={this.onReviewEnter} variant="dark">Enter Review</Button>
+            
         </Form>
+        :
+        null
         
           }
       </div>
