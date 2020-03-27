@@ -3,6 +3,17 @@
  align-self: center !important;
  font-weight: bolder;
  text-align: center !important;
+ color: rgba(0,0,0,.5);
+ display: block!important;
+ width: 100%;
+ padding: .25rem 1.5rem!important;
+ clear: both;
+ color: #212529;
+ text-align: inherit;
+ white-space: nowrap;
+ background-color: transparent;
+ border: 0;
+ font-size: 1.5rem;
 }
 .cart {
   color:rgba(0,0,0,.5);
@@ -10,10 +21,34 @@
 .profile {
   color: rgba(0,0,0,.5);
 }
-.a{
+.first-drop{
   color: rgba(0,0,0,.5);
+    display: block!important;
+    width: 100%;
+    padding: .25rem 1.5rem!important;
+    clear: both;
+    font-weight: 400;
+    color: #212529;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
 }
+.a{
+    color: rgba(0,0,0,.5);
+   
+}
+a:-webkit-any-link{
+  color: currentColor!important;
+  text-decoration: currentColor!important;
+  background-color: transparent!important;
+}
+a:hover{
+  background-color:rgb(248, 245, 245)!important;
+}
+
 .logoutclick{
+
   color: rgba(0,0,0,.5)
 }
 #basic-navbar-nav{

@@ -4,6 +4,7 @@ import { setAllWines, setCurrentWine, getCart } from '../../actions/wines'
 import { Card } from 'semantic-ui-react'
 import RenderWine from '../RenderWine/RenderWine';
 import SelectedWine from '../SelectedWine/SelectedWine';
+import './LandingPage.css';
 
 
 

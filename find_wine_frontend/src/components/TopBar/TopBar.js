@@ -3,7 +3,7 @@ import { Nav, NavDropdown, Form, FormControl, Navbar, Container } from 'react-bo
 import './TopBar.css';
 import { setSearchWine } from '../../actions/wines'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 
 
@@ -51,7 +51,6 @@ class TopBar extends Component {
   
   render() {
     
-   
 
     return (
       <Navbar style={myStyles} bg="light" expand="lg">
@@ -60,25 +59,26 @@ class TopBar extends Component {
         <Navbar.Collapse id="basic-navbar-nav">    
           <Nav >
             <NavDropdown title="VARIETAL" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/wines/Cabernet Sauvignon">Cabernet Sauvignon</NavDropdown.Item>
-              <NavDropdown.Item href="/wines/Zinfandel">Zinfandel</NavDropdown.Item>
-              <NavDropdown.Item href="/wines/Merlot">Merlot</NavDropdown.Item>
-              <NavDropdown.Item href="/wines/Chardonnay">Chardonnay</NavDropdown.Item>
-              <NavDropdown.Item href="/wines/Sauvignon Blanc">Sauvignon Blanc</NavDropdown.Item>
+            <Link className="first-drop" to={`/wines/Cabernet Sauvignon`}> Cabernet Sauvignon</Link>
+            <Link className="first-drop" to={`/wines/Zinfandel`}> Zinfandel</Link>
+            <Link className="first-drop" to={`/wines/Merlot`}> Merlot</Link>
+            <Link className="first-drop" to={`/wines/Chardonnay`}> Chardonnay</Link>
+            <Link className="first-drop" to={`/wines/Sauvignon Blanc`}> Sauvignon Blanc</Link>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="/wines/other">Other</NavDropdown.Item>
+              <Link className="first-drop" to={`/wines/other`}> Other</Link>     
             </NavDropdown>
             <Container></Container>
             <NavDropdown title="COUNTRY" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/wines/country/France">France</NavDropdown.Item>
-              <NavDropdown.Item href="/wines/country/Italy">Italy</NavDropdown.Item>
-              <NavDropdown.Item href="/wines/country/USA">USA</NavDropdown.Item>
+            <Link className="first-drop" to={`/wines/country/France`}>France</Link>
+            <Link className="first-drop" to={`/wines/country/Italy`}>Italy</Link>
+            <Link className="first-drop" to={`/wines/country/USA`}>USA</Link>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="/wines/country/other">Other</NavDropdown.Item>
+              <Link className="first-drop" to={`/wines/country/other`}>Other</Link>
             </NavDropdown>
           </Nav>
           <Nav>
-              <Navbar.Brand className="title" href="/wines">F I N D | W I N E</Navbar.Brand>
+              <Link style={myStyles} className="title" to={`/wines`}>F I N D | W I N E</Link>
+              {/* <Navbar.Brand className="title" href="/wines">F I N D | W I N E</Navbar.Brand> */}
           </Nav>
           <Nav>
             <Form inline>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Card } from 'react-bootstrap'
+import './RenderWine.css';
 
 const myStyles = {
   fontFamily: 'Montserrat'
@@ -11,7 +12,7 @@ export default class RenderWine extends Component {
     const { wine } = this.props
     return (
       <>
-        <Card style={{ width: '18rem', cursor: 'pointer' }} key={wine.id} onClick={() => this.props.onWineClick(wine)}>
+        <Card className="card" style={{ width: '18rem', cursor: 'pointer' }} key={wine.id} onClick={() => this.props.onWineClick(wine)}>
           <Card.Img variant="top" src={`${wine.img_url}`} />
           <Card.Body>
             <Card.Title style={myStyles}>{wine.title}</Card.Title>
