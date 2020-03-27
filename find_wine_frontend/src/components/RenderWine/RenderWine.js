@@ -13,7 +13,7 @@ export default class RenderWine extends Component {
     return (
       <>
         <Card className="card" style={{ width: '18rem', cursor: 'pointer' }} key={wine.id} onClick={() => this.props.onWineClick(wine)}>
-          <Card.Img variant="top" src={`${wine.img_url}`} />
+          <Card.Img variant="top" className="wine-bottle-img" src={`${wine.second_img_url}`} />
           <Card.Body>
             <Card.Title style={myStyles}>{wine.title}</Card.Title>
             <Card.Text style={myStyles}>

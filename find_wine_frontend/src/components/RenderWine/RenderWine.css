@@ -1,3 +1,13 @@
 .card:hover{
   background-color:rgb(248, 245, 245)!important;
 }
+.wine-bottle-img{
+  width:75px;
+  height: 220px;
+}
+.ui.cards>.card{
+  display: block!important;
+}
+.card-img-top{
+  width:30%!important;
+}

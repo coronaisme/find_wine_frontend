@@ -31,7 +31,7 @@ class Cart extends Component {
     return cart.map(wine => 
       <tbody key={wine.id}>
         <tr>
-          <td>{<Image alt="wine_img" className="wine_thumb" src={`${wine.img_url}`}></Image>}</td>
+          <td>{<Image alt="wine_img" className="wine_thumb" src={`${wine.second_img_url}`}></Image>}</td>
           <td>{wine.title}, <br/> {wine.varietal}</td>
           <td name="price">$ {wine.price}.00</td>
           <td className="quantity-shit"><i style={{cursor:'pointer'}} onClick={() => this.handleMinusClick(wine)} className="minus small icon hover"></i> {wine.quantity} <i style={{cursor:'pointer'}} onClick={() => this.handlePlusClick(wine)} className="plus small icon hover"></i></td>
