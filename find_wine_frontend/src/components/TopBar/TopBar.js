@@ -86,7 +86,7 @@ class TopBar extends Component {
           </Nav>
           <Nav>
             <Form inline>
-              <FormControl name="searchInput" onChange={this.handleChange} value={this.state.input} type="text" placeholder="Search" className="mr-sm-2" />
+              <FormControl name="searchInput" onSubmit={this.handleLinkClick} onChange={this.handleChange} value={this.state.input} type="text" placeholder="Search" className="mr-sm-2" />
             </Form>
             {this.checkCurrentUser()}
             {this.checkCart()}
