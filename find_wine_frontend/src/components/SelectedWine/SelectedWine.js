@@ -86,8 +86,12 @@ class SelectedWine extends Component {
         
        <Container fluid="md">
         <Row className="row1">
-          {/* artwork on the left */}
-          <Col><Image alt="wine" fluid className="ui large image" src={`${wine.img_url}`}></Image></Col>
+
+          {/* I want to click on thumb to change the main img to the thumbimg and back and forth */}
+          <Col><Image alt="wine" fluid className="ui large image" src={`${wine.img_url}`}></Image>
+          <Image alt="thumb" className="thumbnail-img" src={`${wine.second_img_url}`} thumbnail />
+          </Col>
+
           {/* info on right */}
           <Col className="left_col">
             <h2 style={myStyles} className="wine_title">{wine.title}  {wine.varietal},</h2>

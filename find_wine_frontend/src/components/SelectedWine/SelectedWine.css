@@ -48,3 +48,8 @@
 .review_button {
   color:black;
 }
+.thumbnail-img{
+  height: 70px;
+  width:60px;
+  /* size:171x180; */
+}

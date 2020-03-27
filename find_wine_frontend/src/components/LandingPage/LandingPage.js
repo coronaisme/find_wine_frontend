@@ -21,7 +21,7 @@ class LandingPage extends Component {
   }
 
   filterWinesBySearch = (wines) => {
-    return wines.filter(wine => wine.title.includes(this.props.searchInput) || wine.varietal.startsWith(this.props.searchInput) || wine.region.includes(this.props.searchInput) )
+    return wines.filter(wine => wine.title.toLowerCase().includes(this.props.searchInput.toLowerCase()) || wine.varietal.toLowerCase().startsWith(this.props.searchInput.toLowerCase()) || wine.region.toLowerCase().includes(this.props.searchInput.toLowerCase()) )
   }
   
   showingWines = () => {
