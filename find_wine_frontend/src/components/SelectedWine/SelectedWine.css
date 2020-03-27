@@ -53,3 +53,6 @@
   width:60px;
   /* size:171x180; */
 }
+.review-container:hover{
+  background-color: transparent!important;
+}
