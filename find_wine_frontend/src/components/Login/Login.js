@@ -56,10 +56,9 @@ export default class Login extends Component {
     return (
       <Grid textAlign='center' style={{ height: '100vh', myStyles }} verticalAlign='middle'>
     <Grid.Column style={{ maxWidth: 450, myStyles }}>
-      {this.state.error ? <Header className="invalid-header" style={myStyles} as="h2" color="black" textAlign="center">Invalid Login</Header> : null}
-      <Header className="login-header" style={myStyles} as='h2' color='black' textAlign='center'>
+      {this.state.error ? <Header className="invalid-header" style={myStyles} as="h2" color="black" textAlign="center">Invalid Login</Header> : <Header className="login-header" style={myStyles} as='h2' color='black' textAlign='center'>
         Log-In 
-      </Header>
+      </Header>}
       <Form size='large' onSubmit={this.handleSubmit}>
        
           <Form.Input style={myStyles} fluid icon='user' iconPosition='left' placeholder='Username' name="username"  value={fields.username}

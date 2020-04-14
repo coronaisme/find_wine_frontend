@@ -12,16 +12,15 @@ const myStyles = {
 
 class Cart extends Component {
   
-  // state = {
-  //   subtotal:0,
-  // }
-
 
   componentDidMount() {
     this.props.getCart()
-    console.log(this.props, "in cart mount")
+    console.log(this.props.current_user.user_details, "in cart mount")
     // this.props.setAllWines()
   }
+
+  
+
 
   
   makeCart = () => {
@@ -84,8 +83,22 @@ class Cart extends Component {
       return Math.random()
     }
 
+
+    getAge = (dateString) => {
+      let today = new Date();
+      let birthDate = new Date(dateString)
+      let age = today.getFullYear() - birthDate.getFullYear();
+      let m = today.getMonth() - birthDate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+      return age;
+    }
+
+
   render() {
-    // console.log(this.props, "in cart")
+    
+    console.log(this.props, "in cart")
     const { cart } = this.props
     
 
@@ -111,6 +124,9 @@ class Cart extends Component {
             </Table>
           </Row>
           <Row>
+            {//check for empty cart
+            this.props.cart.length < 1 ? 
+            <h2 style={myStyles}>Your cart is empty</h2> :
             <Table>
               <tbody>
               <tr className="bottomtable" style={myStyles}>
@@ -121,7 +137,10 @@ class Cart extends Component {
                 <td></td>
                 <td></td>
                 <td></td>
-                { localStorage.getItem('token') ?
+                
+                { //check for user age
+                
+                this.props.current_user.user_details  ?
                 <td>SUBTOTAL | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $ {this.props.cart && this.handleSubtotal()}.00 <br/><br/><br/>
 
                 <StripeCheckout
@@ -138,10 +157,13 @@ class Cart extends Component {
                 </td>
                 :
                 <td>Must be logged in to Checkout!</td>
+                //end of check for user
           }
               </tr>
               </tbody>
             </Table>
+            //end check of empty cart
+          }
           </Row>
         </Container>
       </>

@@ -4,7 +4,7 @@ import { setCart, getCart, setAllWines } from '../../actions/wines'
 import { Container, Row, Col, Image, Button, Table, Form } from 'react-bootstrap'
 import Review from '../Review/Review.js'
 import './SelectedWine.css'
-import { Redirect } from 'react-router-dom'
+// import { Redirect } from 'react-router-dom'
 
 const myStyles = {
   fontFamily: 'Montserrat'
@@ -42,6 +42,17 @@ class SelectedWine extends Component {
     })
   }
 
+
+  getAge = (dateString) => {
+    let today = new Date();
+    let birthDate = new Date(dateString)
+    let age = today.getFullYear() - birthDate.getFullYear();
+    let m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
+  }
   onReviewEnter = () => {
    this.setState(prevState => {
      return {
@@ -78,12 +89,14 @@ class SelectedWine extends Component {
   }
 
   onCartClick = () => {
+    //atempted to check age, not working well
+    // (this.getAge(this.props.current_user.user_details.dateofbirth) < 21) ? this.props.setCart(this.props.wine) : alert("Must be signed-in to add to cart!")
     localStorage.token ? this.props.setCart(this.props.wine) : alert("Must be signed-in to add to cart!")
   }
 
   checkWine = () => {
     
-    return this.props.cart.some(wine => wine.id === this.props.wine.id) ?
+    return (this.props.cart.some(wine => wine.id === this.props.wine.id))  ?
     <Button disabled style={{ pointerEvents: 'none' }} className="add_to_cart_btn" variant="dark" size="lg" active>Add to Cart</Button>
     :
     <Button onClick={this.onCartClick} className="add_to_cart_btn" variant="dark" size="lg" active>Add to Cart</Button>
@@ -140,10 +153,11 @@ class SelectedWine extends Component {
                 <p style={myStyles} className="wine_score">WE | {wine.score}</p>
                 <br/>
                   <div style={myStyles} className="btn_div">
-                    {/* {console.log(this.props.wine)} */}
+                    {/* {console.log(this.props.current_user.user_details.dateofbirth, "selected wine")} */}
                     { 
-                    this.props.wine &&
-                      this.checkWine() } 
+                    
+                    (this.props.wine) &&
+                      this.checkWine()  } 
                   </div>
                 <br/> 
                 <Table style={myStyles} striped>
