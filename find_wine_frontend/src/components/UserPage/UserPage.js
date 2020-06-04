@@ -14,6 +14,7 @@ class UserPage extends Component {
   componentDidMount() {
     this.props.getCart()
     this.props.setAllWines()
+   
   }
   
   

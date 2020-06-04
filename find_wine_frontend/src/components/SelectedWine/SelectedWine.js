@@ -193,10 +193,12 @@ class SelectedWine extends Component {
           </Row>
        </Container>
           <br/>
+          {/* current_user.user_details && !this.props.current_user.reviews.some(rev => rev.wine_id === this.props.wine.id) */}
 
-          {( current_user.user_details && !this.props.current_user.reviews.some(rev => rev.wine_id === this.props.wine.id) ) 
+          {( current_user.user_details && !this.state.reviews.some(rev => rev.review.user_id === current_user.user_details.id) ) 
+         
           ?
-        <Form onSubmit={this.handleSubmit}>
+          <Form onSubmit={this.handleSubmit}>
           <Form.Group style={myStyles} className="reviewTextArea" controlId="reviewTextArea">
               <Form.Label>Write a Review!</Form.Label>
               <Form.Control onChange={this.handleChange} value={this.state.reviewContent} name="review" as="textarea" rows="5" />
@@ -210,6 +212,7 @@ class SelectedWine extends Component {
         null
         
           }
+          {console.log(current_user.user_details && !this.state.reviews.some(rev => rev.user_id === current_user.user_details.id), "checking props")}
       </div>
     )
   }
