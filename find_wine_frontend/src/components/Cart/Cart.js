@@ -68,7 +68,7 @@ class Cart extends Component {
     handleSubmit = () => {
       // e.persist()
       // e.preventDefault()
-      let body = { status:"Completed, Delivered on-time", user_id:this.props.current_user.user_details.id, shipped_to:this.props.current_user.user_details.address, total:this.handleSubtotal() }
+      let body = { status:"Completed, Delivered on-time", user_id:this.props.current_user.user_details.id, shipped_to:this.props.current_user.user_details.address, total:this.handleSubtotal(), wine_ids:this.props.cart.map(wine => wine.id) }
       console.log(body)
       fetch('http://localhost:3000/api/v1/new_order', {
         method: "POST",
