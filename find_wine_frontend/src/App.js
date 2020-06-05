@@ -38,7 +38,6 @@ class App extends Component {
     localStorage.setItem("token", user.token);
     this.setState({ auth: currentUser });
     window.location.reload();
-    
   };
 
   handleSignup = (user) => {

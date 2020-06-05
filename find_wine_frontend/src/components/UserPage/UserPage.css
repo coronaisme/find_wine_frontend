@@ -8,3 +8,6 @@
 .review-card:hover{
   background-color: lightgray;
 }
+.order-blocks{
+  text-align: left;
+}
