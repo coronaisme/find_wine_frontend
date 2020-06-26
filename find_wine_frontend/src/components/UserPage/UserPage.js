@@ -43,6 +43,7 @@ class UserPage extends Component {
 
   render() {
     const { user_details } = this.props.current_user;
+    console.log(user_details, "user_details");
 
     return (
       <div>
@@ -93,23 +94,25 @@ class UserPage extends Component {
             </Row>
             <Row>
               <Col style={myStyles}>
-                {user_details.name.toUpperCase()} ORDERS
+                {user_details.name.toUpperCase()} PAST ORDERS
                 <br />
-                {this.props.current_user.orders.map((order) => (
-                  <ul className="order-blocks" key={order.id}>
-                    {order.created_at.toString().split("T")[0]} : {order.status}
-                    {this.props.current_user.user_details.orders.map(
-                      (order) => {
-                        return order.wines.map((wine) => {
-                          return (
-                            <ul>
-                              {wine.title} - ${wine.price}.00
-                            </ul>
-                          );
-                        });
-                      }
-                    )}
-                    shipped to : {order.shipped_to}, total: ${order.total}.00{" "}
+                <br />
+                {user_details.orders.map((order) => (
+                  <ul className="order-blocks" key={order.order.id}>
+                    {console.log(order, "order")}
+                    {order.order.created_at.split("T")[0]} : <br />
+                    <br />
+                    {order.wines.map((wine) => {
+                      return (
+                        <li key={wine.id} className="wine-list-ele">
+                          {wine.title} : ${wine.price}.00
+                        </li>
+                      );
+                    })}
+                    <br />
+                    shipped to : {order.order.shipped_to}
+                    <br />
+                    total: ${order.order.total}.00{" "}
                   </ul>
                 ))}
               </Col>
