@@ -198,7 +198,7 @@ class SelectedWine extends Component {
             {/* info on right */}
             <Col className="left_col">
               <h2 style={myStyles} className="wine_title">
-                {wine.title} {wine.varietal},
+                {wine.title} {wine.varietal}
               </h2>
               <h3 style={myStyles} className="wine_year">
                 {wine.year}
