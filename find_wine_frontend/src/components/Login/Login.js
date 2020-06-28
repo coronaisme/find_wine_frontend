@@ -25,18 +25,18 @@ export default class Login extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-
     api.auth
-      .login(this.state.fields.username, this.state.fields.password)
-      .then((res) => {
-        if (res.error) {
-          this.setState(
-            {
-              error: true,
-            },
-            () => window.location.reload()
+    .login(this.state.fields.username, this.state.fields.password)
+    .then((res) => {
+      if (res.error) {
+        this.setState(
+          {
+            error: true,
+          },
+          () => window.location.reload()
           );
         } else {
+          
           this.props.history.push("/wines");
           this.props.handleLogin(res);
         }

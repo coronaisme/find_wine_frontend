@@ -12,11 +12,6 @@ import Cart from "./components/Cart/Cart.js";
 import api from "./api/api.js";
 // import { handleTimeElapsed } from "./utilities/utils.js";
 
-
-
-
-
-
 class App extends Component {
   state = {
     auth: {

@@ -33,6 +33,7 @@ class TopBar extends Component {
   };
 
   checkCurrentUser = () => {
+    console.log(this.props)
     if (this.props.current_user.user_details) {
       return (
         <>
