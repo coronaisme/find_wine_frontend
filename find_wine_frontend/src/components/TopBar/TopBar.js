@@ -33,7 +33,7 @@ class TopBar extends Component {
   };
 
   checkCurrentUser = () => {
-    console.log(this.props)
+    console.log(this.props);
     if (this.props.current_user.user_details) {
       return (
         <>
@@ -168,7 +168,6 @@ class TopBar extends Component {
             </NavDropdown>
           </Nav>
           <Nav>
-            {/* <Link style={myStyles} className="title" to={`/wines`}>F I N D | W I N E</Link> */}
             <Navbar.Brand className="title" href="/wines">
               F I N D | W I N E
             </Navbar.Brand>
@@ -203,7 +202,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-// give ability to update store with action
 const mapDispatchToProps = (dispatch) => {
   return {
     setSearchWine: (input) => {

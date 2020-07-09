@@ -30,8 +30,6 @@ class UserPage extends Component {
     return age;
   };
 
-  //think about this after posting an order, check to see if you can connect a review to a specific wine because you have wine_id
-
   handleReviewClick = (e) => {
     e.persist();
     let wine = this.props.wines.find(

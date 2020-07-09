@@ -10,17 +10,16 @@ class LandingPage extends Component {
   componentDidMount() {
     this.props.setAllWines();
     this.props.getCart();
-   //from here
+    //from here
 
     if (localStorage.token) {
       setTimeout(() => {
         localStorage.clear();
         this.setState({ auth: { currentUser: {} } });
-        window.location.reload()
+        window.location.reload();
       }, 10800000);
     }
     //to here is a test for clearing local storage after a set time (idk how this will work if the user is not technically on the page...)
-    
   }
 
   onWineClick = (wine) => {

@@ -13,9 +13,7 @@
   border: lightgray solid 1px;
   border-style: ridge;
 }
-.order-blocks:hover {
-  /* background-color: lightgray; */
-}
+
 .wine-list-ele {
   list-style-type: none;
 }

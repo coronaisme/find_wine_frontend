@@ -18,7 +18,6 @@ class Cart extends Component {
   componentDidMount() {
     this.props.getCart();
     console.log(this.props.current_user.user_details, "in cart mount");
-    // this.props.setAllWines()
   }
 
   makeCart = () => {
@@ -72,7 +71,6 @@ class Cart extends Component {
   };
 
   handlePlusClick = (wine) => {
-    // console.log(wine)
     ++wine.quantity;
     this.props.addToQuantity(wine);
   };
@@ -84,8 +82,6 @@ class Cart extends Component {
   };
 
   handleSubmit = () => {
-    // e.persist()
-    // e.preventDefault()
     let body = {
       status: "Completed, Delivered on-time",
       user_id: this.props.current_user.user_details.id,
