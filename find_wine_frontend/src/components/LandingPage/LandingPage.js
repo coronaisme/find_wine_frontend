@@ -123,7 +123,7 @@ class LandingPage extends Component {
       <div className="LandingPage">
        
         
-        <Row> <img className="header-image" src="https://images5.alphacoders.com/552/thumb-1920-552146.jpg"></img></Row>
+        <Row> <img className="header-image" src="https://preachthestory.com/wp-content/uploads/2018/03/vineyard.jpg"></img></Row>
       <br/>
         {this.showingWines()}
       </div>
