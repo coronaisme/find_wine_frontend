@@ -4,6 +4,7 @@ import { setAllWines, setCurrentWine, getCart } from "../../actions/wines";
 import { Card } from "semantic-ui-react";
 import RenderWine from "../RenderWine/RenderWine";
 import SelectedWine from "../SelectedWine/SelectedWine";
+import { Row } from "react-bootstrap";
 import "./LandingPage.css";
 
 class LandingPage extends Component {
@@ -120,9 +121,10 @@ class LandingPage extends Component {
   render() {
     return (
       <div className="LandingPage">
-        <br />
-        <br />
-        <br />
+       
+        
+        <Row> <img className="header-image" src="https://images5.alphacoders.com/552/thumb-1920-552146.jpg"></img></Row>
+      <br/>
         {this.showingWines()}
       </div>
     );

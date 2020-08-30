@@ -147,6 +147,7 @@ class SelectedWine extends Component {
     });
   };
 
+
   render() {
     const { wine, current_user } = this.props;
 

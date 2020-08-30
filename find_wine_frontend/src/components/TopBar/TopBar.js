@@ -168,9 +168,14 @@ class TopBar extends Component {
             </NavDropdown>
           </Nav>
           <Nav>
-            <Navbar.Brand className="title" href="/wines">
+            {this.props.current_user.user_details ? <Navbar.Brand className="title-with-login" href="/wines">
               F I N D | W I N E
-            </Navbar.Brand>
+            </Navbar.Brand>  : <Navbar.Brand className="title" href="/wines">
+              F I N D | W I N E
+            </Navbar.Brand>}
+            {/* <Navbar.Brand className="title" href="/wines">
+              F I N D | W I N E
+            </Navbar.Brand> */}
           </Nav>
           <Nav>
             <Form inline>
