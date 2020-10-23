@@ -1,83 +1,11 @@
-
 .title {
- align-self: center !important;
- font-weight: bolder;
- text-align: center !important;
- color: rgba(0,0,0,.5);
- display: block!important;
- width: 100%;
- padding: .5rem 1.5rem!important;
- clear: both;
- color: #212529;
- text-align: inherit;
- white-space: nowrap;
- background-color: transparent;
- border: 0;
- font-size: 1.5rem;
-}
-.cart {
-  color:rgba(0,0,0,.5);
-}
-.profile {
-  color: rgba(0,0,0,.5);
-}
-.profile:hover{
-  background-color: transparent!important;
-}
-.logoutclick:hover{
-  background-color: transparent!important;
-
-}
-.first-drop{
-  color: rgba(0,0,0,.5);
-    display: block!important;
-    width: 100%;
-    padding: .25rem 1.5rem!important;
-    clear: both;
-    font-weight: 400;
-    color: #212529;
-    text-align: inherit;
-    white-space: nowrap;
-    background-color: transparent;
-    border: 0;
-}
-.a{
-    color: rgba(0,0,0,.5);
-   
-}
-a:-webkit-any-link{
-  color: currentColor!important;
-  text-decoration: currentColor!important;
-  background-color: transparent!important;
-}
-a:hover{
-  background-color:rgb(248, 245, 245)!important;
-}
-
-.logoutclick{
-
-  color: rgba(0,0,0,.5)
-}
-#basic-navbar-nav{
-justify-content: space-between !important;
-
-}
-
-.title:hover{
-  background-color: transparent!important;
-}
-.title-drop:hover{
-  background-color: transparent!important;
-}
-.title-with-login{
-  margin-left:9rem;
   align-self: center !important;
   font-weight: bolder;
   text-align: center !important;
-  color: rgba(0,0,0,.5);
-  display: block!important;
+  color: rgba(0, 0, 0, 0.5);
+  display: block !important;
   width: 100%;
-  padding: .5rem 1.5rem!important;
+  padding: 0.5rem 1.5rem !important;
   clear: both;
   color: #212529;
   text-align: inherit;
@@ -85,4 +13,82 @@ justify-content: space-between !important;
   background-color: transparent;
   border: 0;
   font-size: 1.5rem;
+}
+.cart {
+  color: rgba(0, 0, 0, 0.5);
+}
+.profile {
+  color: rgba(0, 0, 0, 0.5);
+}
+.profile:hover {
+  background-color: transparent !important;
+}
+.logoutclick:hover {
+  background-color: transparent !important;
+}
+.first-drop {
+  color: rgba(0, 0, 0, 0.5);
+  display: block !important;
+  width: 100%;
+  padding: 0.25rem 1.5rem !important;
+  clear: both;
+  font-weight: 400;
+  color: #212529;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+}
+.a {
+  color: rgba(0, 0, 0, 0.5);
+}
+a:-webkit-any-link {
+  color: currentColor !important;
+  text-decoration: currentColor !important;
+  background-color: transparent !important;
+}
+a:hover {
+  background-color: rgb(248, 245, 245) !important;
+}
+
+.logoutclick {
+  color: rgba(0, 0, 0, 0.5);
+}
+#basic-navbar-nav {
+  justify-content: space-between !important;
+}
+
+.title:hover {
+  background-color: transparent !important;
+}
+.title-drop:hover {
+  background-color: transparent !important;
+}
+.title-with-login {
+  margin-left: 9rem;
+  align-self: center !important;
+  font-weight: bolder;
+  text-align: center !important;
+  color: rgba(0, 0, 0, 0.5);
+  display: block !important;
+  width: 100%;
+  padding: 0.5rem 1.5rem !important;
+  clear: both;
+  color: #212529;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+  font-size: 1.5rem;
+}
+/* i.large.icon,
+i.large.icons {
+  line-height: 1;
+  vertical-align: middle;
+  font-size: 2em;
+} */
+i.shopping.bag.large.icon {
+  line-height: 1;
+  vertical-align: middle;
+  font-size: 2em;
 }
