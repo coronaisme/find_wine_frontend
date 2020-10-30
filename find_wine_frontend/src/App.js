@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./App.css";
 import LandingPage from "./components/LandingPage/LandingPage.js";
-// import SelectedWine from './components/SelectedWine/SelectedWine.js'
 import { Switch, Route } from "react-router-dom";
 import TopBar from "./components/TopBar/TopBar.js";
 import Login from "./components/Login/Login.js";
@@ -10,7 +9,6 @@ import UserPage from "./components/UserPage/UserPage.js";
 import SignUp from "./components/SignUp/SignUp.js";
 import Cart from "./components/Cart/Cart.js";
 import api from "./api/api.js";
-// import { handleTimeElapsed } from "./utilities/utils.js";
 
 class App extends Component {
   state = {

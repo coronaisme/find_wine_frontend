@@ -42,7 +42,6 @@ class UserPage extends Component {
   render() {
     const { user_details } = this.props.current_user;
     console.log(user_details, "user_details");
-  
 
     return (
       <div>
@@ -104,7 +103,6 @@ class UserPage extends Component {
                     {order.wines.map((wine) => {
                       return (
                         <li key={wine.id} className="wine-list-ele">
-                          
                           {wine.title} : ${wine.price}.00
                         </li>
                       );

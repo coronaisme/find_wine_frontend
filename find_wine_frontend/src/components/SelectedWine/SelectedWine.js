@@ -154,8 +154,6 @@ class SelectedWine extends Component {
       <div style={myStyles} className="outer">
         <Container fluid="md">
           <Row className="row1">
-            
-
             {!this.state.thumbnail ? (
               <Col>
                 {/* main img */}
@@ -216,7 +214,6 @@ class SelectedWine extends Component {
               </p>
               <br />
               <div style={myStyles} className="btn_div">
-                {/* {console.log(this.props.current_user.user_details.dateofbirth, "selected wine")} */}
                 {this.props.wine && this.checkWine()}
               </div>
               <br />
@@ -253,8 +250,6 @@ class SelectedWine extends Component {
           </Row>
         </Container>
         <br />
-        {/* current_user.user_details && !this.props.current_user.reviews.some(rev => rev.wine_id === this.props.wine.id) */}
-
         {current_user.user_details &&
         !this.state.reviews.some(
           (rev) => rev.review.user_id === current_user.user_details.id
