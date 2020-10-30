@@ -36,8 +36,6 @@ export default class Review extends Component {
                 <Card.Subtitle style={myStyles} className="mb-2 text-muted">
                   - {review.created_at.toString().split("T")[0]}
                 </Card.Subtitle>
-                {/* <Card.Link href="#">+ </Card.Link>
-              <Card.Link href="#">-</Card.Link> */}
               </Card.Body>
             </Col>
           </Card>

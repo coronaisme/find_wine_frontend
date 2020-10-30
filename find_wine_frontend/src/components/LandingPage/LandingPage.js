@@ -121,10 +121,14 @@ class LandingPage extends Component {
   render() {
     return (
       <div className="LandingPage">
-       
-        
-        <Row> <img className="header-image" src="https://preachthestory.com/wp-content/uploads/2018/03/vineyard.jpg"></img></Row>
-      <br/>
+        <Row>
+          {" "}
+          <img
+            className="header-image"
+            src="https://preachthestory.com/wp-content/uploads/2018/03/vineyard.jpg"
+          ></img>
+        </Row>
+        <br />
         {this.showingWines()}
       </div>
     );
