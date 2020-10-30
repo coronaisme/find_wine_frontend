@@ -147,7 +147,6 @@ class SelectedWine extends Component {
     });
   };
 
-
   render() {
     const { wine, current_user } = this.props;
 
@@ -155,7 +154,7 @@ class SelectedWine extends Component {
       <div style={myStyles} className="outer">
         <Container fluid="md">
           <Row className="row1">
-            {/* I want to click on thumb to change the main img to the thumbimg and back and forth */}
+            
 
             {!this.state.thumbnail ? (
               <Col>
