@@ -1,73 +1,83 @@
 //sign up form -> goes to HomePage
-import React, { Component } from 'react';
-// import HomePage from '../HomePage/HomePage.js';
-import {  Col, Form, Button } from "react-bootstrap";
-// import { DatePicker } from 'react-bootstrap-date-picker'
-import "./SignUp.css"
+import React, { Component } from "react";
+import { Col, Form, Button } from "react-bootstrap";
+import "./SignUp.css";
 
 const myStyles = {
-  fontFamily: 'Montserrat'
-}
-
+  fontFamily: "Montserrat",
+};
 
 export default class SignUp extends Component {
-
   state = {
     error: false,
     fields: {
       username: "",
-      password: ""
-    }
-  }
+      password: "",
+    },
+  };
 
-  
   handleChange = (e) => {
-    const newFields = { ...this.state.fields, [e.target.name]: e.target.value}
+    const newFields = { ...this.state.fields, [e.target.name]: e.target.value };
     this.setState({
-      fields: newFields
-    })
-  }
-  
+      fields: newFields,
+    });
+  };
+
   handleSubmit = (e) => {
-      e.preventDefault()
-      e.persist()
-      
-      let data = {name:e.target.name.value , avatar_url: e.target.avatar.value, email: e.target.email.value, address: e.target.address.value, city: e.target.city.value, state: e.target.state[1].value, zipcode: e.target.zipcode.value, dateofbirth: e.target.dob.value, password:e.target.password.value }
-      fetch("http://localhost:3000/api/v1/users/new",
-      {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json',Accept: 'application/json',Authorization: ""},
-        body: JSON.stringify(data)
-      })
-      .then(resp => resp.json())
-      .then(dataz => {
-        if(dataz.token) {
-          this.props.history.push('/wines')
-          this.props.handleSignUp(dataz)
+    e.preventDefault();
+    e.persist();
+
+    let data = {
+      name: e.target.name.value,
+      avatar_url: e.target.avatar.value,
+      email: e.target.email.value,
+      address: e.target.address.value,
+      city: e.target.city.value,
+      state: e.target.state[1].value,
+      zipcode: e.target.zipcode.value,
+      dateofbirth: e.target.dob.value,
+      password: e.target.password.value,
+    };
+    fetch("http://localhost:3000/api/v1/users/new", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: "",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((resp) => resp.json())
+      .then((dataz) => {
+        if (dataz.token) {
+          this.props.history.push("/wines");
+          this.props.handleSignUp(dataz);
         } else {
-          alert('No dice brother')
+          alert("No dice brother");
         }
-      })
-      // console.log(e.target) 
-    }
-  
+      });
+  };
 
   render() {
-
     return (
-
-      <Form style={myStyles} className="signup-form" onSubmit={this.handleSubmit}> 
+      <Form
+        style={myStyles}
+        className="signup-form"
+        onSubmit={this.handleSubmit}
+      >
         <Form.Row>
-
           <Form.Group as={Col} controlId="formGridName">
             <Form.Label>Name</Form.Label>
             <Form.Control name="name" type="name" placeholder="Name" />
           </Form.Group>
 
-
           <Form.Group as={Col} controlId="formGridPassword">
             <Form.Label>Password</Form.Label>
-            <Form.Control name="password" type="password" placeholder="Password" />
+            <Form.Control
+              name="password"
+              type="password"
+              placeholder="Password"
+            />
           </Form.Group>
         </Form.Row>
 
@@ -89,7 +99,6 @@ export default class SignUp extends Component {
             <Form.Control name="avatar" type="avatar" placeholder="Image Url" />
           </Form.Group>
         </Form.Row>
-
 
         <Form.Row>
           <Form.Group as={Col} controlId="formGridCity">
@@ -157,11 +166,18 @@ export default class SignUp extends Component {
 
           <Form.Group type="date" as={Col} controlId="formGridDOB">
             <Form.Label>Date of Birth</Form.Label>
-            <Form.Control name="dob" type="date"/>
+            <Form.Control name="dob" type="date" />
           </Form.Group>
 
-          <Form.Group type="text" pattern="[0-9]{5}" as={Col} controlId="formGridZip">
-            <Form.Label type="text" pattern="[0-9]{5}" >Zip</Form.Label>
+          <Form.Group
+            type="text"
+            pattern="[0-9]{5}"
+            as={Col}
+            controlId="formGridZip"
+          >
+            <Form.Label type="text" pattern="[0-9]{5}">
+              Zip
+            </Form.Label>
             <Form.Control name="zipcode" type="text" pattern="[0-9]{5}" />
           </Form.Group>
         </Form.Row>
@@ -169,7 +185,7 @@ export default class SignUp extends Component {
         <Button variant="dark" type="submit">
           Submit
         </Button>
-      </Form>  
-    )
+      </Form>
+    );
   }
 }
