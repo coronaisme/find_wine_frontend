@@ -100,17 +100,19 @@ class UserPage extends Component {
                     {console.log(order, "order")}
                     {order.order.created_at.split("T")[0]} : <br />
                     <br />
-                    {order.wines.map((wine) => {
+                    {order.wines.map((wine, i) => {
                       return (
+                        // wines bought
                         <li key={wine.id} className="wine-list-ele">
-                          {wine.title} : ${wine.price}.00
+                          {i + 1}: {wine.title} <p>${wine.price}.00 / bottle</p>
                         </li>
                       );
                     })}
                     <br />
-                    shipped to : {order.order.shipped_to}
-                    <br />
-                    total: ${order.order.total}.00{" "}
+                    {/* shipped to */}
+                    shipped to : <p>{order.order.shipped_to}</p>
+                    {/* total */}
+                    total: <p>${order.order.total}.00 </p>
                   </ul>
                 ))}
               </Col>
