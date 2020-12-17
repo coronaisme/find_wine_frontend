@@ -98,21 +98,22 @@ class UserPage extends Component {
                 {user_details.orders.map((order) => (
                   <ul className="order-blocks" key={order.order.id}>
                     {console.log(order, "order")}
-                    {order.order.created_at.split("T")[0]} : <br />
+                    <b>{order.order.created_at.split("T")[0]}</b> : <br />
                     <br />
                     {order.wines.map((wine, i) => {
                       return (
                         // wines bought
                         <li key={wine.id} className="wine-list-ele">
-                          {i + 1}: {wine.title} <p>${wine.price}.00 / bottle</p>
+                          {i + 1}: <b>{wine.title}</b>{" "}
+                          <p>${wine.price}.00 / bottle</p>
                         </li>
                       );
                     })}
                     <br />
                     {/* shipped to */}
-                    shipped to : <p>{order.order.shipped_to}</p>
+                    <b>shipped to</b> : <p>{order.order.shipped_to}</p>
                     {/* total */}
-                    total: <p>${order.order.total}.00 </p>
+                    <b>total</b> : <p>${order.order.total}.00 </p>
                   </ul>
                 ))}
               </Col>
@@ -130,7 +131,7 @@ class UserPage extends Component {
                       style={{ cursor: "pointer" }}
                     >
                       {" "}
-                      {review.created_at.toString().split("T")[0]} :{" "}
+                      <b>{review.created_at.toString().split("T")[0]}</b> :{" "}
                       {review.content}
                     </Card.Text>
                   </ul>
